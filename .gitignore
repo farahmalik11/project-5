@@ -126,6 +126,9 @@ ENV/
 .local
 .ipython
 .jupyter
+
+#large csv files
+*.csv
 © 2021 GitHub, Inc.
 Help
 Support
