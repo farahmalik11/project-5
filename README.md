@@ -10,15 +10,16 @@
 Input data:
 * Data Source: [National Weather Service](https://www.weather.gov/gis/Counties). Counties of the U.S used by NWS to issue county based forecasts and warnings.
 
+#### Data Preparation Steps
+1. Columns present in other data frames were dropped: state and county name.
+2. Irrelevant columns were dropped: cwa, time zone, and fe area.
+
 *** Model Usage Data Dictionary***
 |Feature|Type|Description|
 |---|-----|----------------------------------------------------|
 |lon|float|Angular distance of the county west of the meridian.|
 |lat|float|Angular distance of the county north of the equator.|
 
-#### Data Preparation Steps
-1. Columns present in other data frames were dropped: state and county name.
-2. Irrelevant columns were dropped: cwa, time zone, and fe area.
 
 ---
 ### Estimated Water Usage Data Preparation
@@ -184,6 +185,16 @@ write.csv(data, file = csv_file, row.names = FALSE)
 ### Methodology and Analysis
 
 #### 1. Data Acquisition and Cleaning
+
+##### 1a. Water Usage Data
+
+##### 1b. Geographical Data
+
+##### 1c. Temperature Data
+
+##### 1d. Drought Data
+
+##### 1e. Income Data
 
 #### 2. Data Exploration and Visualization
 
