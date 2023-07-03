@@ -64,3 +64,33 @@ elif page == 'Model':
         model_0 = pickle.load(f)
 
     st.write(f"County population mean (in thousands): {round(model_0)}")
+    
+    
+# Choropleths
+#cite: https://plotly.com/python/county-choropleth/ > Redirects to manage deprecation: https://plotly.com/python/choropleth-maps/
+
+from urllib.request import urlopen
+import json
+with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+    counties = json.load(response)
+
+# dtype={'FIPS':str} # need to make sure we are using FIPS codes as strings vs. ints.  Can be done on import.
+
+import plotly.express as px
+
+# Get user input: which cluster would you like to see for your selected county
+user_selected_value = '' # Get user input: which cluster would you like to see for your selected county
+cluster_dict = {
+    '<user_selected_value':'column_name',
+}
+
+fig = px.choropleth(
+                    title = f"Water Usage for {county}"
+                    # df, ## dateframe with FIPs codes
+                    geojson=counties,
+                    locations='FIPS',
+                    color=cluster_dict.get(user_selected_value),
+                    hover_name = 'county', ## County Name
+                    hover_data = '',
+                    basemap_visible = True
+                    )
