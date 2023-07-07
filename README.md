@@ -1,178 +1,248 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 5: Group Project
+<img src ="https://www.fostercity.org/sites/default/files/styles/gallery500/public/imageattachments/publicworks/page/6071/water-smart.png?itok=vRWn03Zw" style="float: left; margin: 20px; height: 80px">
 
-## The work
-
-The prompts are there to help jump-start your ideation process. If you would like to change or combine prompts, that's fine! If you want to find your own idea, even better. **Consult your local instructor for final approval before getting started.**  
-
-Remember to start with a good problem statement!
-
-## The Data
-
-Some prompts have links to data sources, some don't. It's your responsibility to gather and clean your data. For most projects, this will be the bulk of your work. Start early!
-
-Inspiration for several prompts came from [Data is Plural](https://tinyletter.com/data-is-plural).
-
-## Prompts
-
-### Aviation Accidents
-
-The National Transportation Safety Board (NTSB) [tracks](https://www.ntsb.gov/_layouts/ntsb.aviation/index.aspx) all civilian aviation accidents (and "incidents") going back to 1962.
-
-### Center for Disease Control
-
-The Center for Disease Control has several datasets:
-- [Vaccinations](https://data.cdc.gov/browse?category=Vaccinations)
-- [Smoking and Tobacco Use](https://data.cdc.gov/browse?category=Smoking+%26+Tobacco+Use)
-- [COVID-19](https://data.cdc.gov/browse?tags=covid-19)
-
-### Economic Data
-
-If you're interested in a project focused on the economy, the Bureau of Labor Statistics (BLS) has [several datasets](https://www.bls.gov/data/) ranging from employment to inflation.
-
-### Voter Fraud (or lack thereof)
-The Brookings Institute had an [interesting article](https://www.brookings.edu/blog/fixgov/2020/06/02/low-rates-of-fraud-in-vote-by-mail-states-show-the-benefits-outweigh-the-risks/) on voter fraud. Although no datasets are provided, there are several links to sources where you might be able to find some.
-
-### Incarceration
-
-The United States Sentencing Commission (USSC) has [data](https://www.ussc.gov/research/datafiles/commission-datafiles) on federal sentencing going back to 2002.
-
-### Environment
-
-The EPA has data on [air quality](https://cfpub.epa.gov/airnow/index.cfm?action=airnow.main), [precipitation](https://edg.epa.gov/metadata/catalog/search/resource/details.page?uuid={BDD5DD12-4942-41A6-B47D-9C2459F28A0A}), [stream flows](https://edg.epa.gov/metadata/catalog/search/resource/details.page?uuid={0599E344-4682-479D-9334-78FE576E2881}) [and more](https://edg.epa.gov/metadata/catalog/main/home.page).
-
-### Protests
-
-[The Mass Mobilization Project](https://massmobilization.github.io/) provides data on demonstrations worldwide, as well as the government responses.
-
-### Charity
-
-[Data.world](https://data.world/datasets/charity) has several datasets related to altruism: donations, organizations, and volunteerism. 
-
-### CTE
-
-Chronic Traumatic Encephalopathy (CTE) is a horrific brain disease, and occurs [frequently](http://www.bu.edu/articles/2017/cte-former-nfl-players/) in former NFL players. Gathering the data will take some work, but here are some starter links.
-- [Kaggle](https://www.kaggle.com/jpmiller/nfl-competition-data)
-- [Twelve Years of National Football League Concussion Data](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3438866/)
-
-### Politics
-FiveThiryEight is a great news and commentary site for all things data. Their main foci are sports and politics. If you're interested in polling data, check out the "Data" links in the footer on [this page](https://projects.fivethirtyeight.com/2020-election-forecast/).
-
-### Consumer Complaints
-
-The Consumer Financial Protection Bureau maintains a [dataset](https://www.consumerfinance.gov/data-research/consumer-complaints/) on customer complaints to various financial organizations in the US.
-
-### Professional Athletes
-
-For this prompt, choose a professional sport and compare the distribution of birth months vs the US population. [Sports Reference](https://www.sports-reference.com/) is a good resource for men's and women's sports.
-
-h/t [Malcolm Gladwell](https://youtu.be/kspphGOjApk?t=148)
-
-### SEC
-
-The Securities and Exchange Commission (SEC) is the go-to for [financial data](https://www.sec.gov/edgar/searchedgar/companysearch.html) on US publicly traded companies. The also have [press releases](https://www.sec.gov/litigation/litreleases.shtml) that pertain to various violations.
-
-### US Treasury
-
-The US Treasury Department has several datasets related to public debt. The [yield curve](https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/textview.aspx?data=yield) is a key indicator of economic health. They also maintain data on the sale of [securities](https://www.treasurydirect.gov/instit/annceresult/annceresult.htm).
-
-They also have [auction data](https://home.treasury.gov/services/treasury-auctions) for items that are seized by the IRS.
-
-### Federal Reserve
-
-The Fed has a wide variety of [datasets](https://www.federalreserve.gov/datadownload/) related to the economy and financial markets.
-
-### Still stuck?
-
-Check out [/r/dataisbeautiful](https://www.reddit.com/r/dataisbeautiful/), [Data.world](https://data.world/) and [Kaggle](https://www.kaggle.com/datasets) for inspiration.
-
-## Requirements
-For the purposes of a DSI project, you must meet a few technical requirements. They are:
-1)  A `README.md` file in your project repo. Note that `README` files are automatically rendered by GitHub when you view a repo. Your README should contain:
-    - A problem statement.
-    - A succinct formulation of the question your analysis seeks to answer.
-    - A table of contents, which should indicate which notebook or scripts a stakeholder should start with, and a link to an **executive summary**.
-    - A paragraph description of the data you used, plus your data acquisition, ingestion, and cleaning steps.
-    - A short description of software requirements (e.g., `Pandas`, `Scikit-learn`) required by your analysis.
-
-2) Your notebook(s) should be **reproducible** and **error-free**. This means:
-    - You should set a random seed at the start of every notebook. This will ensure that the random numbers generated in your notebook will be the same every time.
-    - You need to provide a _relative path_ to your data, so that if I clone your repo to my machine I can run everything in your repo without error. (You also provide links to any publicly accessible data.)
-    - I should be able to `Restart & Run All` in your notebook(s) and see that the _exact same_ results are reproduced.
-    - To check that everything worked properly, you may consider forking your own repo to a different location on your computer and checking that all notebooks can run properly from top to bottom.
-
-3) Bear in mind that the value you provide may come from data ingestion, data cleaning, EDA, and/ or a dashboard, etc. While a model may not be immediately apparent, be creative. *Without us telling you exactly what model to build, how could you build a model to increase performance or generate better insights when answering the problem you are facing?*
-
-**Questions**: Questions should be sent to your local instructor. **Questions should be specific, brief, and formatted.**
-> This is a good practice to develop! When contacting a boss or a client, you should make your question as easy as possible to answer. Consider the following two examples:
-
-> Example 1: "Hey, I have a question. I'm writing a blog post about TensorFlow but got stuck. This part was confusing: https://www.tensorflow.org/api_docs/python/tf/tanh Can you help?"
-
-> Example 2: "The TensorFlow tanh documentation says 'Computes hyperbolic tangent of x element-wise.' What does hyperbolic tangent mean? The link to see more is: https://www.tensorflow.org/api_docs/python/tf/tanh"
-
-> The first example spends about 20 words before mentioning what is going on. The question "Can you help?" is unspecific. The boss/client is required to go to a link in order to get any information about the problem.
-
-> The second example quickly calls out 'Tensorflow tanh documentation,' the explicit quote that is confusing, the explicit question being asked, and a link for additional context. Both examples attempt to get the boss/client/whomever to explain hyperbolic tangent, but imagine how much more quickly someone could answer the second query than the first.
-
-> A helpful way to consider this: When you ask a question, you are basically asking for a favor. You're asking a person to give their time, their brainpower, and their knowledge to you. Every time you ask them to hunt around for more (i.e. they _have_ to travel to a link to get context or they struggle to understand the question you're asking), you're asking a bigger and bigger favor from them.
-
+# Promoting Sustainable Water Practices: Clustering Across Counties and States
 ---
 
-### Teams
+# Problem Statement
+Climate change has emerged as a pressing global challenge, with significant implications for water resources. As temperatures rise and climates become increasingly erratic and unpredictable, the task of monitoring and managing water usage grows more complex. By leveraging machine learning, we can unlock valuable insights in relation to water consumption patterns that empower policymakers, water resource managers, and communities to make informed decisions, develop adaptation strategies, and implement proactive measures to sustainably manage our water resources in the face of an uncertain climate future.
 
-Your local instructor will divide your class into teams. Chat with them to find out!
+The objective of this project is to use machine learning to build a clustering model to better understand, and be able to compare and contrast, state-county level water supply and consumption. By providing locally-relevant information, consumers of this information might better understand their own water consumption, identifying areas for improvement and efficiency, and industries in their local area may adjust consumption patterns through awareness and advocacy.
 
----
+# Data Dictionary and Data Preparation
 
-### Presentations
+### Geographical Data
 
-Each group will present their findings.
+#### Input Data:
+* Data Source: [National Weather Service](https://www.weather.gov/gis/Counties) (NWS). Counties of the U.S used by NWS to issue county based forecasts and warnings.
 
-Your presentation must include:
-- A summary of the problem you tackled.
-- A walkthrough of how you set out to solve the problem.
-- A demonstration of your solution. (i.e. You may demonstrate an app you developed, an example of how a model may be used, etc.)
-- A summary of any models you fit and, if applicable, their performance.
-- A brief discussion of limitations to your process. (i.e. data collection issues, missing values)
-- A brief discussion of next steps.
+|Feature|Type|Description|
+|---|-----|----------------------------------------------------|
+|lon|float|Longitude; Angular distance of the county west of the meridian.|
+|lat|float|Latitude; Angular distance of the county north of the equator.|
 
-Presentation requirements:
-- *Consider the audience!*
-- *As with presentations in the "real world," there is no required time limit.* Your presentation should be long enough to cover all relevant aspects of the problem, but not so long that it obscures the takeaways of the presentation. (Your group should likely aim for somewhere between 15 and 20 minutes, but it is possible that you may need a different amount of time for your presentation.)
-- Your presentation must include slides. (Google Slides, PowerPoint, Keynote, etc.)
-- Use visuals that are appropriately scaled and interpretable.
-- Make sure you provide clear conclusions/recommendations that follow logically from your analyses and narrative and answer your data science problem.
+#### Data Preparation Steps:
+1. Columns present in other data frames were dropped: state and county name.
+2. Irrelevant columns were dropped: cwa, time zone, and fe area.
 
 ---
+### Estimated Water Usage Data
 
-### Consulting Project Feedback + Evaluation
+#### Input Data:
+* Data Source: [United States Geological Survey Maryland, Delaware, and the District of Columbia Water Science Center - Public Data Releases](https://www.sciencebase.gov/catalog/item/get/5af3311be4b0da30c1b245d8/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet).
 
-Data science is a field in which we apply data to solve real-world problems. Therefore, projects and presentations are means by which we can assess your ability to solve real-world problems in a data-driven manner.
+* [Data Dictionary: sciencebase.gov](https://www.sciencebase.gov/catalog/item/get/5af3311be4b0da30c1b245d8/application/fgdc+xml)
 
-When evaluating projects, there are four areas on which your instructors focus.
-1. **Project Requirements: Did you meet all project requirements?** In answering this question, your instructors want to assess how well you met the project requirements as established. These will generally be laid out in the project readme.
+* Citation: Dieter, C.A., Linsey, K.S., Caldwell, R.R., Harris, M.A., Ivahnenko, T.I., Lovelace, J.K., Maupin, M.A., and Barber, N.L., 2018, Estimated Use of Water in the United States County-Level Data for 2015 (ver. 2.0, June 2018): U.S. Geological Survey data release, https://doi.org/10.5066/F7TB15V5.
 
-2. **Audience: Is your presentation appropriate for the stakeholder?** In answering this question, your instructors want to assess how well you present your results to stakeholders. For example:
-  - Did you frame the problem appropriately for the audience?
-  - Did you use the appropriate level of technical language for your audience?
-  - Did you effectively use your time, or did you encounter an issue such as going significantly beyond or under the allotted time or rushing to conclude the presentation in the allotted time?
-  - Did you present effectively, or were there things that detract from the overall presentation such as not speaking loudly enough for the audience or repeating oneself?
+#### Data Preparation Steps:
+1. The following columns were removed: unnamed: 0, year, state, and county name.
+2. FIPS code column names were standardized to just 'fips'.  
+3. All values of '--', were changed to 0, as this was likely the case if the information was not received from the county.  
+4. For any value that was based on days or supply (e.g., number of days or gallons per day), NaN values were adjusted to 0. It is likely these values were 0 if they were not given by the counties.  
+5. Averages were used in place of NaN for values that were population or temperature based.  
 
-3. **Methods: Are your methods appropriate for solving the problem?** In answering this question, your instructors want to assess how well you have applied data science methodology to the problem at hand. For example:
-  - Did you make well-reasoned modeling choices, or is there clear evidence that the model is inadequate or improper?
-  - Are you able to clearly defend your methodological decisions and results?
-  - Did you generalize your results properly, or were your conclusions/inferences improper or fallacious?
+|Feature|Type|Description|
+|---------------|------|------------------------------------------------------------------------------------------|
+|state          |object|US postal abbreviation for one of the 48 contiguous states or the District of Columbia.| 
+|countyname     |object|Name of the county.| 
+|fips           |int   |Concatenation of the State Federal Information Processing Standards (FIPS) and County FIPS.| 
+|tp_totpop      |float |Total population of the county, in thousands.|
+|ps_gwpop       |float |Public Supply, population served by ground water, in thousands.|
+|ps_swpop       |float |Public Supply, population served by surface water, in thousands.|
+|ps_topop       |float |Public Supply, total population served, in thousands.|
+|ps_wgwto       |float |Public Supply, groundwater withdrawals, total, in millions of gallons per day (Mgal/d).|
+|ps_wswto       |float |Public Supply, surface-water withdrawals, total, in Mgal/d.|
+|ps_wtotl       |float |Public Supply, total withdrawals, total (fresh+saline), in Mgal/d.|
+|do_sspop       |float |Domestic, self-supplied population, in thousands.|
+|do_sspcp       |float |Domestic, self-supplied per capita use, in gallons per day (gal/d).|
+|do_psdel       |float |Domestic, deliveries from Public Supply, in Mgal/d.|
+|do_pspcp       |float |Domestic, publicly supplied per capita use, in gal/d.|
+|do_wfrto       |float |Domestic, total self-supplied withdrawals, fresh, in Mgal/d.|
+|do_wdelv_      |float |Domestic, total use (withdrawals + deliveries), in Mgal/d.|
+|in_wgwto       |float |Industrial, self-supplied groundwater withdrawals, total, in Mgal/d.|
+|in_wswto       |float |Industrial, self-supplied surface-water withdrawals, total, in Mgal/d.|
+|in_wtotl       |float |Industrial, self-supplied total withdrawals, total (fresh+saline), in Mgal/d.|
+|ir_wfrto       |float |Irrigation, total withdrawals, fresh, in Mgal/d.|
+|ir_recww       |float |Irrigation, reclaimed wastewater, in Mgal/d.|
+|ir_cusfr       |float |Irrigation, consumptive use, fresh, in Mgal/d.|
+|ir_irtot       |float |Irrigation, acres irrigated, total, in thousand acres.|
+|ic_wfrto       |float |Irrigation-Crop, total withdrawals, fresh, in Mgal/d.|
+|ic_recww       |float |Irrigation-Crop, reclaimed wastewater, in Mgal/d.|
+|ic_cusfr       |float |Irrigation-Crop, consumptive use, fresh, in Mgal/d.|
+|ic_irtot       |float |Irrigation-Crop, acres irrigated, total, in thousand acres.|
+|ig_wfrto       |float |Irrigation-Golf, total withdrawals, fresh, in Mgal/d.|
+|ig_recww       |float |Irrigation-Golf, reclaimed wastewater, in Mgal/d.|
+|ig_cusfr       |float |Irrigation-Golf, consumptive use, fresh, in Mgal/d.|
+|ig_irtot       |float |Irrigation-Golf, acres irrigated, total, in thousand acres.|
+|li_wfrto       |float |Livestock, total withdrawals, fresh, in Mgal/d.|
+|aq_wgwto       |float |Aquaculture, groundwater withdrawals, total, in Mgal/d.|
+|aq_wswto       |float |Aquaculture, surface-water withdrawals, total, in Mgal/d.|
+|aq_wtotl       |float |Aquaculture, total withdrawals, total (fresh+saline), in Mgal/d.|
+|mi_wgwto       |float |Mining, groundwater withdrawals, total, in Mgal/d.|
+|mi_wswto       |float |Mining, surface-water withdrawals, fresh, in Mgal/d.|
+|mi_wtotl       |float |Mining, total withdrawals, total (fresh+saline), in Mgal/d.|
+|pt_wgwto       |float |Thermoelectric, groundwater withdrawals, total, in Mgal/d.|
+|pt_wswto       |float |Thermoelectric, surface-water withdrawals, total, in Mgal/d.|
+|pt_wtotl       |float |Thermoelectric, total withdrawals, total (fresh+saline), in Mgal/d.|
+|pt_recww       |float |Thermoelectric, reclaimed wastewater, in Mgal/d.|
+|pt_psdel       |float |Thermoelectric, deliveries from Public Supply, in Mgal/d.|
+|pt_cutot       |float |Thermoelectric, total consumptive use, total (fresh+saline), in Mgal/d.|
+|pt_power       |float |Thermoelectric, power generated, in gigawatt-hours.|
+|po_wgwto       |float |Thermoelectric once-through, groundwater withdrawals, total, in Mgal/d.|
+|po_wswto       |float |Thermoelectric once-through, surface-water withdrawals, total, in Mgal/d.|
+|po_wtotl       |float |Thermoelectric once-through, total withdrawals, total (fresh+saline), in Mgal/d.|
+|po_recww       |float |Thermoelectric once-through, reclaimed wastewater, in Mgal/d.|
+|po_psdel       |float |Thermoelectric once-through, deliveries from Public Supply, in Mgal/d.|
+|po_cutot       |float |Thermoelectric once-through, total consumptive use, total (fresh+saline), in Mgal/d.|
+|po_power       |float |Thermoelectric once-through, power generated, in gigawatt-hours.|
+|pc_wgwto       |float |Thermoelectric recirculating, groundwater withdrawals, total, in Mgal/d.|
+|pc_wswto       |float |Thermoelectric recirculating, surface-water withdrawals, total, in Mgal/d.|
+|pc_wtotl       |float |Thermoelectric recirculating, total withdrawals, total (fresh+saline), in Mgal/d.|
+|pc_recww       |float |Thermoelectric recirculating, reclaimed wastewater, in Mgal/d.|
+|pc_psdel       |float |Thermoelectric recirculating, deliveries from Public Supply, in Mgal/d.|
+|pc_cutot       |float |Thermoelectric recirculating, total consumptive use, total (fresh+saline), in Mgal/d.|
+|pc_power       |float |Thermoelectric recirculating, power generated, in gigawatt-hours.|
+|to_wgwto       |float |Total groundwater withdrawals, total (fresh+saline), in Mgal/d.|
+|to_wswto       |float |Total surface-water withdrawals, total (fresh+saline), in Mgal/d.|
+|to_wtotl       |float |Total withdrawals, total (fresh+saline), in Mgal/d.|
+|to_cutotpartial|float |Irrigation and Thermoelectric, total consumptive use, total (fresh+saline), in Mgal/d.|
 
-4. **Value: Have you provided value to the stakeholder through clear, data-driven recommendations?** In answering this question, your instructors want to assess the value you provide to the stakeholder as a data scientist. For example:
-  - Did you answer the problem posed to you?
-  - Did you make your recommendations clear, or were the recommendations unclear?
-  - Were your recommendations data-driven and based on the results of your work?
+---
+### Temperature Data
 
-You will earn a score for each of the four areas mentioned above.
-1. Project Requirements: You may earn a score of 0 or 1. You will earn a score of 1 if all project requirements are met. Otherwise, you will earn a score of 0.
-2. Audience: You may earn a score between 0 and 3. A score of 0 indicates that your presentation is inappropriate for the stakeholder. A score of 1 indicates that at least part of your presentation should be non-trivially reworked to be more appropriate for the stakeholder. A score of 2 indicates that there are few to no areas of your presentation that should be reworked. A score of 3 indicates that your presentation is consistently appropriate for the stakeholder and serves as a model for future presentations.
-3. Methods: You may earn a score between 0 and 3. A score of 0 indicates that your methods are inappropriate. A score of 1 indicates that your methods are somewhat inappropriate, that justification for methodological decisions is lacking, and/or that your conclusions do not follow from the methods. A score of 2 indicates that your methods are appropriate, justification is sufficient/strong, and your conclusions follow well from the methods. A score of 3 indicates that your methods are excellent, strongly defended, and serves model for future presentations.
-4. Value: You may earn a score between 0 and 3. A score of 0 indicates that you provide little to no value to the stakeholder. A score of 1 indicates that the value you provide to the stakeholder is substantially less than expected by not answering the problem, not providing clear recommendations to the stakeholder, and/or providing recommendations that were not data-driven. A score of 2 indicates that the value you provide to the stakeholder is on par with the expectation of providing clear, data-driven recommendations that directly answer the problem posed. A score of 3 indicates that the value you provide to the stakeholder is beyond what is expected and serves as a model for future presentations.
+#### Input Data: 
+* [Source: Spangler, Liang, Wellenius via figshare.com](https://figshare.com/articles/dataset/Daily_County-Level_Wet-Bulb_Globe_Temperature_Universal_Thermal_Climate_Index_and_Other_Heat_Metrics_for_the_Contiguous_United_States_2000-2020/19419836)
 
-Your final grade will be calculated as follows:
-- If any project requirement is not met, the final grade is 'Fail' with a score of 0.
-- If all project requirements are met, then the final grade is 'Pass' with a score calculated by summing the above scores. Therefore, if all project requirements are met, the final score will be between a 1 and 10.
+* [Data Dictionary: Nature.com](https://www.nature.com/articles/s41597-022-01405-3/tables/4)
+
+* Citation: Spangler, Keith (2022). Daily, County-Level Wet-Bulb Globe Temperature, Universal Thermal Climate Index, and Other Heat Metrics for the Contiguous United States, 2000-2020. figshare. Dataset. https://doi.org/10.6084/m9.figshare.19419836.v2
+
+#### Data Preparation Steps:
+* Data was downloaded from the above source in a .rds format. The code below was used in RStudio to convert the file to a .csv for use outside R.
+```
+rds_file <- "~/Downloads/Heatvars_County_2000-2020_v1.2.Rds"
+data <- readRDS(rds_file)
+csv_file <- "~/DSI-508/Projects/group-project/Heatvars_County_2000-2020_v1.2.csv"
+write.csv(data, file = csv_file, row.names = FALSE)
+```
+
+|Feature| Variable Name (Long) | Description/Format | Units |
+|----------------------|---------------------|--------------------------------------------------|-------|
+| tmean_c              | Daily Mean Ambient Temperature | 2-meter ambient temperature averaged over hourly observations from 00 LST to 23 LST | °C    |
+| tdmean_c             | Daily Mean Dew Point Temperature | Dew point temperature averaged over hourly observations from 00 LST to 23 LST | °C    |
+| netmean_c            | Daily Mean Net Effective Temperature | Net effective temperature averaged over hourly observations from 00 LST to 23 LST | °C    |
+| himean_c             | Daily Mean Heat Index | Heat index averaged over hourly observations from 00 LST to 23 LST | °C    |
+| hxmean_c             | Daily Mean Humidex | Humidex averaged over hourly observations from 00 LST to 23 LST | °C    |
+| wbgtmean_c           | Daily Mean Wet-Bulb Globe Temperature | Wet-bulb globe temperature (WBGT) averaged over hourly observations from 00 LST to 23 LST | °C    |
+| flag_t               | Ambient temperature flag | Indicator of the percent of county population represented by the county-day ambient temperature estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA) | N/A   |
+| flag_td              | Dew point temperature flag | Indicator of the percent of county population represented by the county-day dew point temperature estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA) | N/A   |
+| flag_net             | Net effective temperature flag | Indicator of the percent of county population represented by the county-day net effective temperature estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA) | N/A   |
+| flag_HI              | Heat index flag | Indicator of the percent of county population represented by the county-day heat index estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA) | N/A   |
+| flag_hx              | Humidex flag | Indicator of the percent of county population represented by the county-day humidex estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA) | N/A   |
+| flag_wbgt            | Wet-bulb globe temperature flag | Indicator of the percent of county population represented by the county-day WBGT estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA) | N/A   |
+
+---
+### Drought Data
+
+#### Input Data:
+
+* Data Source: [National Drought Mitigation Center - University of Nebraska-Lincoln](https://droughtmonitor.unl.edu/DmData/DataDownload/ComprehensiveStatistics.aspx). Data is collected and provided in association with the U.S. Department of Agriculture, The U.S. Department of Commerce, and the National Oceanic and Atmospheric Administration.
+
+* Percent Population Statistics provide the proportion of the population affected in each USDM category (see table below). Source data is provided on a daily frequency considering a seven-day look ahead (ex. on Jan 1, the percent of population values for each county are valid through Jan 8)
+
+#### Drought Categories:
+| Category | Description              | Example Percentile Range for Most Indicators | Values for Standard Precipitation Index and Standardized Precipitation-Evapotranspiration Index |
+|----------|--------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------------|
+| None     | Normal or wet conditions | 31 or above                                  | -0.49 or above                                                                                  |
+| D0       | Abnormally Dry           | 21 to 30                                     | -0.5 to -0.79                                                                                   |
+| D1       | Moderate Drought         | 11 to 20.99                                  | -0.8 to -1.29                                                                                   |
+| D2       | Severe Drought           | 6 to 10.99                                   | -1.3 to -1.59                                                                                   |
+| D3       | Extreme Drought          | 3 to 5.99                                    | -1.6 to -1.99                                                                                   |
+| D4       | Exceptional Drought      | 0 to 2.99                                    | -2.0 or less|
+
+#### Data Preparation:
+1. Dropped State, County columns - these were handled centrally
+2. Dropped ValidStart, ValidEnd columns - these were all 7 day look forward periods (ex. in X county, 5% of the population was in D0 (abnormally dry) conditions between January 31st 2023 and February 6th, 2023)
+3. Dropped StatisticFormatID column - all columns were in the same format (percent of population in each condition per county per reporting period)
+4. Reaggregated at an annual basis for each FIPS (county), using average (e.g., in 2014, 5% of the population of X was in drought, on average.)
+5. Renamed Columns None, D0, D1, D2, D3, D4 to match the definitions in the above table - this helped make any outputs in modeling more interpretable.
+
+|Feature|Type|Description|
+|-------------------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------|
+|exceptional_drought|float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table|
+|normal_wet         |float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table (ex. -0.49 or above)|
+|abnormally_dry     |float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table|
+|moderate_drought   |float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table|
+|severe_drought     |float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table|
+|extreme_drought    |float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table|
+|exceptional_drought|float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table|
+
+# Executive Summary
+
+## Background and Purpose
+According to the United Nations, climate change is primarily a water crisis – whether it be unpredictable rainfall patterns, shrinking ice fields, worsening floods, rising sea levels, wildfires, or droughts, the impact of climate change are complexly linked to water (_[1](https://www.unwater.org/water-facts/water-and-climate-change)_). Climate change has also inevitably resulted in a stress on water resources, such that where, when, and how much water is available to users is becoming less secure (_[2](https://ecology.wa.gov/Air-Climate/Responding-to-climate-change/Water-supply-impacts)_). A reliable supply of water is vital to communities, businesses, the environment, and overall quality of life. Key water solutions which can help ameliorate the impacts of climate change include improved water management and climate-smart agriculture techniques which promote means of using water more efficient to help reduce demand on freshwater supplies (_[3](https://www.un.org/en/climatechange/science/climate-issues/water?gclid=CjwKCAjw44mlBhAQEiwAqP3eVuRMwE59ML1ee51xt7EENlZ6kEIyNP3ffbJAEAYoe8n-UfEZbVC2MBoCVVMQAvD_BwE)_). Sustainable water management is central to building the resilience of societies and it is imperative that action is taken at the state, county, and individual levels. Awareness of water consumption and identification of patterns are effective ways to initiate and facilitate change.
+
+Our project will investigate water consumption patterns across different counties within the contiguous United States. Users of our model will be able to identify metrics around their usage and take actionable measures to improve water outcomes, live more sustainable lifestyles, and combat the effect of climate change. We utilize water usage, drought, and income data to identify factors influencing water consumption and to explore variations across different regions. Using clustering techniques, we can identify areas that face challenges in adopting sustainable water practices compared to their neighboring counterparts. The insights gained from this analysis can also facilitate the development of targeted interventions and improvement plans to promote sustainable water management in these areas.
+
+By the end of this project, we will have an enhanced understanding of water consumption patterns which will contribute to sustainable water management practices and provide valuable insights for individuals and stakeholders involved in water resource planning, policy-making, and conservation efforts.
+
+## Initial Findings
+
+## Methodology and Analysis
+To complete this analysis, a ___ was built using ____.
+
+The high-level process for this analysis is outlined below.
+
+### 1. Data Cleaning
+
+In addition to the data preparation performed on each source dataset (see [Data Dictionary and Data Preparation](#Data-Dictionary-and-Data-Preparation) section), a master dataset was produced with the following key actions:
+- All data outside the year 2015 was removed
+- Five source datasets (drought information, temperature information, county information, income information, and the USCO information) were combined by FIPS code (e.g., state-county code)
+- Columns we adjusted to snake case for ease of use
+- Rows with 98% NaN were dropped; these NaN counties were largely made up of Hawaii, Alaska or USA territories. Due to subsequent scarcity of data for these areas, all rows for Alaska, Hawaii, Virgin Islands, and Puerto Rico were dropped.
+
+The fully combined and cleaned data consisted of 48 states and DC, as well as 1800+ counties.  
+
+### 2. Data Exploration and Visualization
+We began our analysis with a high-level exploration of the combined data file, including describing all numeric variables, visualizing the distribution of water withdrawal and consumption at various levels of granularity (e.g., irrigation [crops vs. golf fields], livestock, aquaculture, mining, thermoelectric [once through vs. recirculating]),and looking at correlations between different temperatures and drought conditions.
+
+<img src ="./EDA/Water_Usage_by_Cat.png">
+
+Following our preliminary investigation, we explored county level correlations in our combined dataset using Shapely files. Each column was mapped individually onto it's own graphic, but no notable insights were observed beyond common knowledge/assumptions. For example, we observed that the North is colder than the South, Napa Valley draws more water for irrigation than most areas, large cities use larger amounts of drinking water, and the southwest have more drought days than the rest of the country. 
+
+<img src ="./EDA/moderate_drought.png">
+<img src ="./EDA/tmean_c.png">
+
+### 3. Data Transformation and Modeling
+Following our initial EDA and visualization, K-Means clustering was used to explore connections in a multi-dimensional fashion to uncover correlations that are not easily seen in a one-dimensional map. The data was standard scaled and four separate clustering models were developed and tested.
+
+<img src ="./EDA/median_household_income.png">
+
+- Water Supply
+    - ps_gwpop: Population served by groundwater supply
+    - ps_swpop: Population served by surface water supply
+    - ps_topop: Population served by total water supply
+- Water Consumption
+    - ps_wgwto: Total water consumed from groundwater supply
+    - ps_wswto: Total water consumed from surface water supply
+    - ps_wtotl: Total water consumed (overall)
+- Demographic and Economic Factors
+    - population: Total population in the state-county region
+    - median_household_income: Median household income in the region
+- Climate Factors
+    - tmean_c: Mean temperature
+    - tdmean_c: Mean dew point temperature
+    - normal_wet: Indicator of normal wetness conditions
+    - abnormally_dry: Indicator of abnormally dry conditions
+    - moderate_drought: Indicator of moderate drought conditions
+    - severe_drought: Indicator of severe drought conditions
+    - extreme_drought: Indicator of extreme drought conditions
+    - exceptional_drought: Indicator of exceptional drought conditions
+    
+We then ensembled our 4 clusters into an additional cluster using K-means, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
+
+
+### 4. Key Findings and Insights 
+
+### 5. Conclusion and Next Steps
+
