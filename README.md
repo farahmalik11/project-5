@@ -10,6 +10,11 @@ The objective of this project is to use machine learning to build a clustering m
 
 # Data Dictionary and Data Preparation
 
+This analysis required a wide variety of data, including that on geographical counties, water usage, median income, temperature, and drought. Data was sourced from a variety of inputs, such as the U.S. Geological Survey (USGS) Circular reports, the National Weather Service, Nature.com, and the National Drought Mitigation Center. Further information on data acquisition, ingestion, and cleaning/preparation steps can be found in subsequent subsections.
+
+All analysis and data preparation were done in Python or Google Colaboratory, using the following softwares: ```pandas```, ```numpy```, ```matplotlib.pyplot```, ```seaborn```, ```sklearn```, ```scipy```, and ```statsmodels```.
+
+
 ### Geographical Data
 
 #### Input Data:
@@ -28,9 +33,9 @@ The objective of this project is to use machine learning to build a clustering m
 ### Estimated Water Usage Data
 
 #### Input Data:
-* Data Source: [United States Geological Survey Maryland, Delaware, and the District of Columbia Water Science Center - Public Data Releases](https://www.sciencebase.gov/catalog/item/get/5af3311be4b0da30c1b245d8/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet).
+* Data Source: [United States Geological Survey Maryland, Delaware, and the District of Columbia Water Science Center - Public Data Releases](https://www.sciencebase.gov/catalog/item/get/5af3311be4b0da30c1b245d8). Direct download [here](https://www.sciencebase.gov/catalog/item/get/5af3311be4b0da30c1b245d8#:~:text=officedocument.spreadsheetml.sheet-,usco2015v2.0.csv,-%E2%80%9CAll%20Data%20CSV).
 
-* [Data Dictionary: sciencebase.gov](https://www.sciencebase.gov/catalog/item/get/5af3311be4b0da30c1b245d8/application/fgdc+xml)
+* [Data Dictionary: sciencebase.gov](https://www.sciencebase.gov/catalog/file/get/5af3311be4b0da30c1b245d8?f=__disk__7c%2Fd0%2Fda%2F7cd0da1f354d12c5870f0dee7446cb41ad5a013f&transform=1&allowOpen=true)
 
 * Citation: Dieter, C.A., Linsey, K.S., Caldwell, R.R., Harris, M.A., Ivahnenko, T.I., Lovelace, J.K., Maupin, M.A., and Barber, N.L., 2018, Estimated Use of Water in the United States County-Level Data for 2015 (ver. 2.0, June 2018): U.S. Geological Survey data release, https://doi.org/10.5066/F7TB15V5.
 
@@ -177,6 +182,36 @@ write.csv(data, file = csv_file, row.names = FALSE)
 |extreme_drought    |float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table|
 |exceptional_drought|float|Percent of county population where the annual average meets the conditions listed in the [Drought Categories](#####-Drought-Categories:) table|
 
+### Income Data
+
+#### Input Data:
+
+* Data Source: Data.world [2015 Median Income by County](https://data.world/tylerudite/2015-median-income-by-county) dataset scraped from Census.gov.
+
+* Data Source: FIPS Codes maintained by Dunn & Bradstreets MDR Education, direct download [here](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.mdreducation.com%2Fpdfs%2FUS_FIPS_Codes.xls&wdOrigin=BROWSELINK).
+
+#### Data Preparation:
+1. Character issues pertaining to Spanish language accents uncovered from data download were updated (e.g., Doï¿½ï¿½a Ana County to Dona Ana County) within the CSV file
+2. FIPS codes were merged in to the dataset by county name
+    - 6 county names were updated to match those in the water dataset
+        - Anchorage Municipality --> Municipality of Anchorage
+        - Juneau City and Borough --> City & Borough of Juneau
+        - Sitka City and Borough --> City & Borough of Sitka
+        - Wrangell City and Borough --> City & Borough of Wrangell
+        - Yakutat City and Borough --> City & Borough of Yakutat
+        - DeKalb County --> De Kalb County
+3. Variables were left as is for merging into larger combined data where they would be snake-cased        
+
+|Feature|Type|Description|
+|-------------------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------|
+|County             |object|County name|
+|Population         |integer|County population in 2015|
+|Median household income     |float|County median household income in 2015|
+|State Code         |object|Abbreviation of state in which county resides|
+|State              |object|State name|
+|FIPS               |integer|State-county FIPS code|
+
+
 # Executive Summary
 
 ## Background and Purpose
@@ -185,8 +220,6 @@ According to the United Nations, climate change is primarily a water crisis – 
 Our project will investigate water consumption patterns across different counties within the contiguous United States. Users of our model will be able to identify metrics around their usage and take actionable measures to improve water outcomes, live more sustainable lifestyles, and combat the effect of climate change. We utilize water usage, drought, and income data to identify factors influencing water consumption and to explore variations across different regions. Using clustering techniques, we can identify areas that face challenges in adopting sustainable water practices compared to their neighboring counterparts. The insights gained from this analysis can also facilitate the development of targeted interventions and improvement plans to promote sustainable water management in these areas.
 
 By the end of this project, we will have an enhanced understanding of water consumption patterns which will contribute to sustainable water management practices and provide valuable insights for individuals and stakeholders involved in water resource planning, policy-making, and conservation efforts.
-
-## Initial Findings
 
 ## Methodology and Analysis
 To complete this analysis, a ___ was built using ____.
@@ -198,7 +231,7 @@ The high-level process for this analysis is outlined below.
 In addition to the data preparation performed on each source dataset (see [Data Dictionary and Data Preparation](#Data-Dictionary-and-Data-Preparation) section), a master dataset was produced with the following key actions:
 - All data outside the year 2015 was removed
 - Five source datasets (drought information, temperature information, county information, income information, and the USCO information) were combined by FIPS code (e.g., state-county code)
-- Columns we adjusted to snake case for ease of use
+- Columns we adjusted to snake-case for ease of use
 - Rows with 98% NaN were dropped; these NaN counties were largely made up of Hawaii, Alaska or USA territories. Due to subsequent scarcity of data for these areas, all rows for Alaska, Hawaii, Virgin Islands, and Puerto Rico were dropped.
 
 The fully combined and cleaned data consisted of 48 states and DC, as well as 1800+ counties.  
