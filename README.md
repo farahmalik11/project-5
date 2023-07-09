@@ -191,9 +191,9 @@ write.csv(data, file = csv_file, row.names = FALSE)
 * Data Source: FIPS Codes maintained by Dunn & Bradstreets MDR Education, direct download [here](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.mdreducation.com%2Fpdfs%2FUS_FIPS_Codes.xls&wdOrigin=BROWSELINK).
 
 #### Data Preparation:
-1. Character issues pertaining to Spanish language accents uncovered from data download were updated (e.g., Doï¿½ï¿½a Ana County to Dona Ana County) within the CSV file
+1. Character issues pertaining to Spanish language accents uncovered from data download were updated (e.g., Doï¿½ï¿½a Ana County to Dona Ana County) within the original CSV file
 2. FIPS codes were merged in to the dataset by county name
-    - 6 county names were updated to match those in the water dataset
+    - 6 county names were updated beforehand to match those in the water dataset
         - Anchorage Municipality --> Municipality of Anchorage
         - Juneau City and Borough --> City & Borough of Juneau
         - Sitka City and Borough --> City & Borough of Sitka
