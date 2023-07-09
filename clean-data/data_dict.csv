@@ -1,0 +1,75 @@
+attribute,description,definition,units,source
+state,"United States postal abbreviation for one of the 50 States, the District of Columbia, Puerto Rico, or the U.S. Virgin Islands.","United States postal abbreviation for one of the 50 States, the District of Columbia, Puerto Rico, or the U.S. Virgin Islands.",,USGS Water Usage
+fips,Concatenation of STATEFIPS and COUNTYFIPS attributes,Concatenation of STATEFIPS and COUNTYFIPS attributes,,USGS Water Usage
+tp_totpop,Total population of area,"Total population of area, in thousands",thousands,USGS Water Usage
+ps_gwpop,"Public Supply, population served by groundwater","Public Supply, population served by groundwater, in thousands",thousands,USGS Water Usage
+ps_swpop,"Public Supply, population served by surface water","Public Supply, population served by surface water, in thousands",thousands,USGS Water Usage
+ps_topop,"Public Supply, total population served","Public Supply, total population served, in thousands",thousands,USGS Water Usage
+ps_wgwto,"Public Supply, groundwater withdrawals, total","Public Supply, groundwater withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+ps_wswto,"Public Supply, surface-water withdrawals, total","Public Supply, surface-water withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+ps_wtotl,"Public Supply, total withdrawals, total (fresh+saline)","Public Supply, total withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+do_sspop,"Domestic, self-supplied population","Domestic, self-supplied population, in thousands",thousands,USGS Water Usage
+do_wfrto,"Domestic, total self-supplied withdrawals, fresh","Domestic, total self-supplied withdrawals, fresh, in Mgal/d",Mgal/d,USGS Water Usage
+do_sspcp,"Domestic, self-supplied per capita use","Domestic, self-supplied per capita use, in gal/d",gal/d,USGS Water Usage
+do_psdel,"Domestic, deliveries from Public Supply","Domestic, deliveries from Public Supply, in Mgal/d",Mgal/d,USGS Water Usage
+do_pspcp,"Domestic, publicly supplied per capita use","Domestic, publicly supplied per capita use, in gal/d",gal/d,USGS Water Usage
+in_wgwto,"Industrial, self-supplied groundwater withdrawals, total","Industrial, self-supplied groundwater withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+in_wswto,"Industrial, self-supplied surface-water withdrawals, total","Industrial, self-supplied surface-water withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+in_wtotl,"Industrial, self-supplied total withdrawals, total (fresh+saline)","Industrial, self-supplied total withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+ir_wfrto,"Irrigation, total withdrawals, fresh","Irrigation, total withdrawals, fresh, in Mgal/d",Mgal/d,USGS Water Usage
+ir_recww,"Irrigation, reclaimed wastewater","Irrigation, reclaimed wastewater, in Mgal/d",Mgal/d,USGS Water Usage
+ir_cusfr,"Irrigation, consumptive use, fresh","Irrigation, consumptive use, fresh, in Mgal/d",Mgal/d,USGS Water Usage
+ir_irtot,"Irrigation, acres irrigated, total","Irrigation, acres irrigated, total, in thousand acres",thousand acres,USGS Water Usage
+ic_wfrto,"Irrigation-Crop, total withdrawals, fresh","Irrigation-Crop, total withdrawals, fresh, in Mgal/d",Mgal/d,USGS Water Usage
+ic_recww,"Irrigation, reclaimed wastewater","Irrigation, reclaimed wastewater, in Mgal/d",Mgal/d,USGS Water Usage
+ic_cusfr,"Irrigation-Crop, consumptive use, fresh","Irrigation-Crop, consumptive use, fresh, in Mgal/d",Mgal/d,USGS Water Usage
+ic_irtot,"Irrigation-Crop, acres irrigated, total","Irrigation-Crop, acres irrigated, total, in thousand acres",thousand acres,USGS Water Usage
+ig_wfrto,"Irrigation-Golf, total withdrawals, fresh","Irrigation-Golf, total withdrawals, fresh, in Mgal/d",Mgal/d,USGS Water Usage
+ig_recww,"Irrigation-Golf, reclaimed wastewater","Irrigation-Golf, reclaimed wastewater, in Mgal/d",Mgal/d,USGS Water Usage
+ig_cusfr,"Irrigation-Golf, consumptive use, fresh","Irrigation-Golf, consumptive use, fresh, in Mgal/d",Mgal/d,USGS Water Usage
+ig_irtot,"Irrigation-Golf, acres irrigated, total","Irrigation-Golf, acres irrigated, total, in thousand acres",thousand acres,USGS Water Usage
+li_wfrto,"Livestock, total withdrawals, fresh","Livestock, total withdrawals, fresh, in Mgal/d",Mgal/d,USGS Water Usage
+aq_wgwto,"Aquaculture, groundwater withdrawals, total","Aquaculture, groundwater withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+aq_wswto,"Aquaculture, surface-water withdrawals, total","Aquaculture, surface-water withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+aq_wtotl,"Aquaculture, total withdrawals, total (fresh+saline)","Aquaculture, total withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+mi_wgwto,"Mining, groundwater withdrawals, total","Mining, groundwater withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+mi_wswto,"Mining, surface-water withdrawals, total","Mining, surface-water withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+mi_wtotl,"Mining, total withdrawals, total (fresh+saline)","Mining, total withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+pt_wgwto,"Thermoelectric, groundwater withdrawals, total","Thermoelectric, groundwater withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+pt_wswto,"Thermoelectric, surface-water withdrawals, total","Thermoelectric, surface-water withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+pt_wtotl,"Thermoelectric, total withdrawals, total (fresh+saline)","Thermoelectric, total withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+pt_recww,"Thermoelectric, reclaimed wastewater","Thermoelectric, reclaimed wastewater, in Mgal/d",Mgal/d,USGS Water Usage
+pt_psdel,"Thermoelectric, deliveries from Public Supply","Thermoelectric, deliveries from Public Supply, in Mgal/d",Mgal/d,USGS Water Usage
+pt_cutot,"Thermoelectric, total consumptive use, total (fresh+saline)","Thermoelectric, total consumptive use, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+pt_power,"Thermoelectric, power generated","Thermoelectric, power generated, in gigawatt-hours",gigawatt-hours,USGS Water Usage
+po_wgwto,"Thermoelectric once-through, groundwater withdrawals, total","Thermoelectric once-through, groundwater withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+po_wswto,"Thermoelectric once-through, surface-water withdrawals, total","Thermoelectric once-through, surface-water withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+po_wtotl,"Thermoelectric once-through, total withdrawals, total (fresh+saline)","Thermoelectric once-through, total withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+po_recww,"Thermoelectric once-through, reclaimed wastewater","Thermoelectric once-through, reclaimed wastewater, in Mgal/d",Mgal/d,USGS Water Usage
+po_psdel,"Thermoelectric once-through, deliveries from Public Supply","Thermoelectric once-through, deliveries from Public Supply, in Mgal/d",Mgal/d,USGS Water Usage
+po_cutot,"Thermoelectric once-through, total consumptive use, total (fresh+saline)","Thermoelectric once-through, total consumptive use, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+po_power,"Thermoelectric once-through, power generated","Thermoelectric once-through, power generated, in gigawatt-hours",gigawatt-hours,USGS Water Usage
+pc_wgwto,"Thermoelectric recirculating, groundwater withdrawals, total","Thermoelectric recirculating, groundwater withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+pc_wswto,"Thermoelectric recirculating, surface-water withdrawals, total","Thermoelectric recirculating, surface-water withdrawals, total, in Mgal/d",Mgal/d,USGS Water Usage
+pc_wtotl,"Thermoelectric recirculating, total withdrawals, total (fresh+saline)","Thermoelectric recirculating, total withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+pc_recww,"Thermoelectric recirculating, reclaimed wastewater","Thermoelectric recirculating, reclaimed wastewater, in Mgal/d",Mgal/d,USGS Water Usage
+pc_psdel,"Thermoelectric recirculating, deliveries from Public Supply","Thermoelectric recirculating, deliveries from Public Supply, in Mgal/d",Mgal/d,USGS Water Usage
+pc_cutot,"Thermoelectric recirculating, total consumptive use, total (fresh+saline)","Thermoelectric recirculating, total consumptive use, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+pc_power,"Thermoelectric recirculating, power generated","Thermoelectric recirculating, power generated, in gigawatt-hours",gigawatt-hours,USGS Water Usage
+to_wgwto,"Total groundwater withdrawals, total (fresh+saline)","Total groundwater withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+to_wswto,"Total surface-water withdrawals, total (fresh+saline)","Total surface-water withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+to_wtotl,"Total withdrawals, total (fresh+saline)","Total withdrawals, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+to_cutotpartial,"Irrigation and Thermoelectric, total consumptive use, total (fresh+saline)","Irrigation and Thermoelectric, total consumptive use, total (fresh+saline), in Mgal/d",Mgal/d,USGS Water Usage
+stcofips,State-county Federal Information Processing Standard (FIPS) Identifier,Unique county identifier: concatenation of two-digit state identifier and three-digit county identifier,N/A,"Spangler, Liang, Wellenius 2022"
+tmean_c,Daily Mean Ambient Temperature,2-meter ambient temperature averaged over hourly observations from 00 LST to 23 LST,°C,"Spangler, Liang, Wellenius 2022"
+tdmean_c,Daily Mean Dew Point Temperature,Dew point temperature averaged over hourly observations from 00 LST to 23 LST,°C,"Spangler, Liang, Wellenius 2022"
+netmean_c,Daily Mean Net Effective Temperature,Net effective temperature averaged over hourly observations from 00 LST to 23 LST,°C,"Spangler, Liang, Wellenius 2022"
+himean_c,Daily Mean Heat Index,Heat index averaged over hourly observations from 00 LST to 23 LST,°C,"Spangler, Liang, Wellenius 2022"
+hxmean_c,Daily Mean Humidex,Humidex averaged over hourly observations from 00 LST to 23 LST,°C,"Spangler, Liang, Wellenius 2022"
+wbgtmean_c,Daily Mean Wet-Bulb Globe Temperature,Wet-bulb globe temperature (WBGT) averaged over hourly observations from 00 LST to 23 LST,°C,"Spangler, Liang, Wellenius 2022"
+flag_t,Ambient temperature flag,"Indicator of the percent of county population represented by the county-day ambient temperature estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA)",N/A,"Spangler, Liang, Wellenius 2022"
+flag_td,Dew point temperature flag,"Indicator of the percent of county population represented by the county-day dew point temperature estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA)",N/A,"Spangler, Liang, Wellenius 2022"
+flag_net,Net effective temperature flag,"Indicator of the percent of county population represented by the county-day net effective temperature estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA)",N/A,"Spangler, Liang, Wellenius 2022"
+flag_hi,Heat index flag,"Indicator of the percent of county population represented by the county-day heat index estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA)",N/A,"Spangler, Liang, Wellenius 2022"
+flag_hx,Humidex flag,"Indicator of the percent of county population represented by the county-day humidex estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA)",N/A,"Spangler, Liang, Wellenius 2022"
+flag_wbgt,Wet-bulb globe temperature flag,"Indicator of the percent of county population represented by the county-day WBGT estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA)",N/A,"Spangler, Liang, Wellenius 2022"
