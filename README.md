@@ -264,6 +264,30 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
     * Can be used to understand the overall demand for water in a region. By comparing the total amount of water withdrawn to the amount of water withdrawn for public supply, policymakers and managers can see how much water is being used by households, businesses, and industries
 
 Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (~35-40 counties per cluster). 
+
+
+[CONFIRM THAT BELOW CAN BE DELETED] 
+- Water Supply
+    - ps_gwpop: Population served by groundwater supply
+    - ps_swpop: Population served by surface water supply
+    - ps_topop: Population served by total water supply
+- Water Consumption
+    - ps_wgwto: Total water consumed from groundwater supplygit 
+    - ps_wswto: Total water consumed from surface water supply
+    - ps_wtotl: Total water consumed (overall)
+- Demographic and Economic Factors
+    - population: Total population in the state-county region
+    - median_household_income: Median household income in the region
+- Climate Factors
+    - tmean_c: Mean temperature
+    - tdmean_c: Mean dew point temperature
+    - normal_wet: Indicator of normal wetness conditions
+    - abnormally_dry: Indicator of abnormally dry conditions
+    - moderate_drought: Indicator of moderate drought conditions
+    - severe_drought: Indicator of severe drought conditions
+    - extreme_drought: Indicator of extreme drought conditions
+    - exceptional_drought: Indicator of exceptional drought conditions
+
     
 We then ensembled our 4 clusters into an additional cluster using KMeans, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
 
