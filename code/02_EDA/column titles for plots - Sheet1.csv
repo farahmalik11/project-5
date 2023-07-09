@@ -1,0 +1,83 @@
+column,color,description
+state,object,US postal abbreviation for one of the 48 contiguous states or the District of Columbia.
+countyname,object,Name of the county.
+fips,int,Concatenation of the State Federal Information Processing Standards (FIPS) and County FIPS.
+tp_totpop,Blues,"Total population of the county, in thousands."
+ps_gwpop,Blues,"Public Supply, population served by ground water, in thousands."
+ps_swpop,Blues,"Public Supply, population served by surface water, in thousands."
+ps_topop,Blues,"Public Supply, total population served, in thousands."
+ps_wgwto,Blues,"Public Supply, groundwater withdrawals, total, in millions of gallons per day (Mgal/d)."
+ps_wswto,Blues,"Public Supply, surface-water withdrawals, total, in Mgal/d."
+ps_wtotl,Blues,"Public Supply, total withdrawals, total (fresh+saline), in Mgal/d."
+do_sspop,Blues,"Domestic, self-supplied population, in thousands."
+do_sspcp,Blues,"Domestic, self-supplied per capita use, in gallons per day (gal/d)."
+do_psdel,Blues,"Domestic, deliveries from Public Supply, in Mgal/d."
+do_pspcp,Blues,"Domestic, publicly supplied per capita use, in gal/d."
+do_wfrto,Blues,"Domestic, total self-supplied withdrawals, fresh, in Mgal/d."
+do_wdelv_,Blues,"Domestic, total use (withdrawals + deliveries), in Mgal/d."
+in_wgwto,Blues,"Industrial, self-supplied groundwater withdrawals, total, in Mgal/d."
+in_wswto,Blues,"Industrial, self-supplied surface-water withdrawals, total, in Mgal/d."
+in_wtotl,Blues,"Industrial, self-supplied total withdrawals, total (fresh+saline), in Mgal/d."
+ir_wfrto,Blues,"Irrigation, total withdrawals, fresh, in Mgal/d."
+ir_recww,Blues,"Irrigation, reclaimed wastewater, in Mgal/d."
+ir_cusfr,Blues,"Irrigation, consumptive use, fresh, in Mgal/d."
+ir_irtot,Blues,"Irrigation, acres irrigated, total, in thousand acres."
+ic_wfrto,Blues,"Irrigation-Crop, total withdrawals, fresh, in Mgal/d."
+ic_recww,Blues,"Irrigation-Crop, reclaimed wastewater, in Mgal/d."
+ic_cusfr,Blues,"Irrigation-Crop, consumptive use, fresh, in Mgal/d."
+ic_irtot,Blues,"Irrigation-Crop, acres irrigated, total, in thousand acres."
+ig_wfrto,Blues,"Irrigation-Golf, total withdrawals, fresh, in Mgal/d."
+ig_recww,Blues,"Irrigation-Golf, reclaimed wastewater, in Mgal/d."
+ig_cusfr,Blues,"Irrigation-Golf, consumptive use, fresh, in Mgal/d."
+ig_irtot,Blues,"Irrigation-Golf, acres irrigated, total, in thousand acres."
+li_wfrto,Blues,"Livestock, total withdrawals, fresh, in Mgal/d."
+aq_wgwto,Blues,"Aquaculture, groundwater withdrawals, total, in Mgal/d."
+aq_wswto,Blues,"Aquaculture, surface-water withdrawals, total, in Mgal/d."
+aq_wtotl,Blues,"Aquaculture, total withdrawals, total (fresh+saline), in Mgal/d."
+mi_wgwto,Blues,"Mining, groundwater withdrawals, total, in Mgal/d."
+mi_wswto,Blues,"Mining, surface-water withdrawals, fresh, in Mgal/d."
+mi_wtotl,Blues,"Mining, total withdrawals, total (fresh+saline), in Mgal/d."
+pt_wgwto,Blues,"Thermoelectric, groundwater withdrawals, total, in Mgal/d."
+pt_wswto,Blues,"Thermoelectric, surface-water withdrawals, total, in Mgal/d."
+pt_wtotl,Blues,"Thermoelectric, total withdrawals, total (fresh+saline), in Mgal/d."
+pt_recww,Blues,"Thermoelectric, reclaimed wastewater, in Mgal/d."
+pt_psdel,Blues,"Thermoelectric, deliveries from Public Supply, in Mgal/d."
+pt_cutot,Blues,"Thermoelectric, total consumptive use, total (fresh+saline), in Mgal/d."
+pt_power,Blues,"Thermoelectric, power generated, in gigawatt-hours."
+po_wgwto,Blues,"Thermoelectric once-through, groundwater withdrawals, total, in Mgal/d."
+po_wswto,Blues,"Thermoelectric once-through, surface-water withdrawals, total, in Mgal/d."
+po_wtotl,Blues,"Thermoelectric once-through, total withdrawals, total (fresh+saline), in Mgal/d."
+po_recww,Blues,"Thermoelectric once-through, reclaimed wastewater, in Mgal/d."
+po_psdel,Blues,"Thermoelectric once-through, deliveries from Public Supply, in Mgal/d."
+po_cutot,Blues,"Thermoelectric once-through, total consumptive use, total (fresh+saline), in Mgal/d."
+po_power,Blues,"Thermoelectric once-through, power generated, in gigawatt-hours."
+pc_wgwto,Blues,"Thermoelectric recirculating, groundwater withdrawals, total, in Mgal/d."
+pc_wswto,Blues,"Thermoelectric recirculating, surface-water withdrawals, total, in Mgal/d."
+pc_wtotl,Blues,"Thermoelectric recirculating, total withdrawals, total (fresh+saline), in Mgal/d."
+pc_recww,Blues,"Thermoelectric recirculating, reclaimed wastewater, in Mgal/d."
+pc_psdel,Blues,"Thermoelectric recirculating, deliveries from Public Supply, in Mgal/d."
+pc_cutot,Blues,"Thermoelectric recirculating, total consumptive use, total (fresh+saline), in Mgal/d."
+pc_power,Blues,"Thermoelectric recirculating, power generated, in gigawatt-hours."
+to_wgwto,Blues,"Total groundwater withdrawals, total (fresh+saline), in Mgal/d."
+to_wswto,Blues,"Total surface-water withdrawals, total (fresh+saline), in Mgal/d."
+to_wtotl,Blues,"Total withdrawals, total (fresh+saline), in Mgal/d."
+to_cutotpartial,Blues,"Irrigation and Thermoelectric, total consumptive use, total (fresh+saline), in Mgal/d."
+median_household_income,Greens,Median Household Income
+tmean_c,RdBu_r,Mean Temperature (°C)
+tdmean_c,RdBu_r,Mean Dew Point Temperature (°C)
+netmean_c,RdBu_r,Mean Net Radiation (°C)
+himean_c,RdBu_r,Mean Heat Index (°C)
+hxmean_c,RdBu_r,Mean Wind Chill Index (°C)
+wbgtmean_c,RdBu_r,Mean Wet Bulb Globe Temperature (°C)
+flag_t,Blues,Temperature Flag
+flag_td,Blues,Dew Point Temperature Flag
+flag_net,Blues,Net Radiation Flag
+flag_hi,Blues,Heat Index Flag
+flag_hx,Blues,Wind Chill Index Flag
+flag_wbgt,Blues,Wet Bulb Globe Temperature Flag
+normal_wet,Greens,Normal Wet Conditions
+abnormally_dry,Reds,Abnormally Dry Conditions
+moderate_drought,Reds,Moderate Drought Conditions
+severe_drought,Reds,Severe Drought Conditions
+extreme_drought,Reds,Extreme Drought Conditions
+exceptional_drought,Reds,Exceptional Drought Conditions
