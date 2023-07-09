@@ -261,7 +261,7 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
 * Irrigation Water Amount Withdrawn vs. Wastewater Reclaimed 
 * Total Water Withdrawal vs. Water Withdrawn for Public Supply
 
-Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (~35-40 counties per cluster). 
+Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (\~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (\~35-40 counties per cluster). 
 
 
 [CONFIRM THAT BELOW CAN BE DELETED] 
