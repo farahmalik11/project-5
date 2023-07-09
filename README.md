@@ -268,7 +268,7 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
     - ps_swpop: Population served by surface water supply
     - ps_topop: Population served by total water supply
 - Water Consumption
-    - ps_wgwto: Total water consumed from groundwater supply
+    - ps_wgwto: Total water consumed from groundwater supplygit 
     - ps_wswto: Total water consumed from surface water supply
     - ps_wtotl: Total water consumed (overall)
 - Demographic and Economic Factors
