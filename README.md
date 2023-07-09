@@ -41,9 +41,9 @@ All analysis and data preparation were done in Python or Google Colaboratory, us
 * Citation: Dieter, C.A., Linsey, K.S., Caldwell, R.R., Harris, M.A., Ivahnenko, T.I., Lovelace, J.K., Maupin, M.A., and Barber, N.L., 2018, Estimated Use of Water in the United States County-Level Data for 2015 (ver. 2.0, June 2018): U.S. Geological Survey data release, https://doi.org/10.5066/F7TB15V5.
 
 #### Data Preparation Steps:
-1. The following columns were removed: unnamed: 0, year, state, and county name.
+1. The following columns were removed: year, state, and county name.
 2. FIPS code column names were standardized to just 'fips'.  
-3. All values of '--', were changed to 0, as this was likely the case if the information was not received from the county.  
+3. All values of '--', were changed to 0, as this was determined to be the case where the information was not provided by the county or sourced by the U.S.G.S.  
 4. For any value that was based on days or supply (e.g., number of days or gallons per day), NaN values were adjusted to 0. It is likely these values were 0 if they were not given by the counties.  
 5. Averages were used in place of NaN for values that were population or temperature based.  
 
@@ -113,6 +113,8 @@ All analysis and data preparation were done in Python or Google Colaboratory, us
 |to_wtotl       |float |Total withdrawals, total (fresh+saline), in Mgal/d.|
 |to_cutotpartial|float |Irrigation and Thermoelectric, total consumptive use, total (fresh+saline), in Mgal/d.|
 
+Web Scraping was employed to extract the data dictionary from a text-based (multi-level indentation).  Details are available in the [Data_Dictionary_Scraping Notebook](code/01_Data Cleaning/data_dictionary_scraping.ipynb)
+
 ---
 ### Temperature Data
 
@@ -122,6 +124,8 @@ All analysis and data preparation were done in Python or Google Colaboratory, us
 * [Data Dictionary: Nature.com](https://www.nature.com/articles/s41597-022-01405-3/tables/4)
 
 * Citation: Spangler, Keith (2022). Daily, County-Level Wet-Bulb Globe Temperature, Universal Thermal Climate Index, and Other Heat Metrics for the Contiguous United States, 2000-2020. figshare. Dataset. https://doi.org/10.6084/m9.figshare.19419836.v2
+
+
 
 #### Data Preparation Steps:
 * Data was downloaded from the above source in a .rds format. The code below was used in RStudio to convert the file to a .csv for use outside R.
@@ -147,6 +151,8 @@ write.csv(data, file = csv_file, row.names = FALSE)
 | flag_hx              | Humidex flag | Indicator of the percent of county population represented by the county-day humidex estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA) | N/A   |
 | flag_wbgt            | Wet-bulb globe temperature flag | Indicator of the percent of county population represented by the county-day WBGT estimate. 0: ≥50%, 1: 10–49%, 2: <10%, 3: 0% (NA) | N/A   |
 
+The data dictionary was extracted from table format via web scraping.  Details are available in the [Data_Dictionary_Scraping Notebook](code/01_Data Cleaning/data_dictionary_scraping.ipynb)
+
 ---
 ### Drought Data
 
@@ -170,8 +176,10 @@ write.csv(data, file = csv_file, row.names = FALSE)
 1. Dropped State, County columns - these were handled centrally
 2. Dropped ValidStart, ValidEnd columns - these were all 7 day look forward periods (ex. in X county, 5% of the population was in D0 (abnormally dry) conditions between January 31st 2023 and February 6th, 2023)
 3. Dropped StatisticFormatID column - all columns were in the same format (percent of population in each condition per county per reporting period)
-4. Reaggregated at an annual basis for each FIPS (county), using average (e.g., in 2014, 5% of the population of X was in drought, on average.)
-5. Renamed Columns None, D0, D1, D2, D3, D4 to match the definitions in the above table - this helped make any outputs in modeling more interpretable.
+4. Renamed Columns None, D0, D1, D2, D3, D4 to match the definitions in the above table - this helped make any outputs in modeling more interpretable.
+5. Resampled at an annual basis for each FIPS (county), using mean values (e.g., in 2014, 5% of the population of X was in drought, on average.)
+6. Resampled at a monthly basis for each FIPS (county), using mean values.  This enables more detailed visualizatons and time series investigations.
+
 
 |Feature|Type|Description|
 |-------------------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -230,8 +238,8 @@ The high-level process for this analysis is outlined below.
 ### 1. Data Cleaning
 
 In addition to the data preparation performed on each source dataset (see [Data Dictionary and Data Preparation](#Data-Dictionary-and-Data-Preparation) section), a master dataset was produced with the following key actions:
-- All data outside the year 2015 was removed
-- Five source datasets (drought information, temperature information, county information, income information, and the USCO information) were combined by FIPS code (e.g., state-county code)
+- All data outside the year 2015 was removed (where direct correlations with water usage data are critical)
+- Five source datasets (drought information, temperature information, county information, income information, and the USCO information) were combined using FIPS code (e.g., state-county code)
 - Columns we adjusted to snake-case for ease of use
 - Rows with 98% NaN were dropped; these NaN counties were largely made up of Hawaii, Alaska or USA territories. Due to subsequent scarcity of data for these areas, all rows for Alaska, Hawaii, Virgin Islands, and Puerto Rico were dropped.
 
@@ -291,7 +299,30 @@ Several options were tested in terms of identifying the number of clusters. Init
     
 We then ensembled our 4 clusters into an additional cluster using KMeans, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
 
-[3-5 SENTENCES ON TIME SERIES]
+#### Time Series
+Climate and Drought Condition data were resampled at a monthly scale using mean values.  We used these values to create engaging and informative visualizations for end users to explore selected counties in the context of the state.
+
+##### Filled Area Charts
+Area charts depicting monthly temperature ranges (min-mean-max) are provided, annual averages and a fixed annual mean temperature, indexed against the first year in the date range.  This helps keep track of longer term trends.
+<img src ="code/02_EDA/images/temp_trend_Alameda_CA.png">
+
+Drought Conditions are visualized similarly using area charts.  As the drought categories are sequential (Moderate > Severe > Extreme > Exceptional), values are calculated as the percent of population experiencing at least the specified drought condition.  Areas tend to enter and exit drought conditions sequentially.  This method of visualization reduces visual noise while highlighting the 'walks' up and down the drought conditions.
+<img src = "code/02_EDA/images/drought_trend_Alameda_CA.png">
+
+
+##### Animated Choropleths
+Choropleths (national maps, where counties are color coded in accordance with selected data) were created and animated at a monthly scale for Drought (Exceptional, Extreme, Severe, and Moderate) conditions, and 12-month lag temperature change.  
+
+To simplify visualizations and improve loading time performance, geography and climate data are filtered to the relevant state for the user selected county.  This enables users to view changes in temperature and drought conditions in their area and in neighboring counties.
+
+<img src = "code/02_EDA/images/Alameda_CA_Exceptional_Drought.gif">
+
+<img src = "code/02_EDA/images/Alameda_CA_12m_Mean_Temp_Change.gif">
+
+##### Seasonality Decomposition
+It can be difficult to isolate long term trends from time series data, especially when seasonality plays such a critical role as in drought and temperature in most counties.  STL Seasonality Decomposition is employed to separate long term trends from seasonal trends.
+
+<img src = "code/02_EDA/images/MonthlyAverageTemperature_Decomp_Alameda_CA.png">
 
 ### 4. Interactive Application
 [3-5 SENTENCES ON TABLEAU]
@@ -299,7 +330,15 @@ We then ensembled our 4 clusters into an additional cluster using KMeans, which 
 
 
 ### 5. Key Findings and Insights 
-Our analysis and applications showed that there is widespread variation in water supply and consumption in many different areas (e.g., industrial, livestock, aquaculture, mining, irrigation, thermoelectric), as well as in county-level temperature and drought changes. Our models showed ...
+Our analysis and applications showed that there is widespread variation in water supply and consumption in many different areas (e.g., industrial, livestock, aquaculture, mining, irrigation, thermoelectric), as well as in county-level temperature and drought changes. Our models showed that sufficient similarities exist between counties to enable clustering and categorization of counties.  Furthermore, engaging storytelling is possible with publicly available data.  By surfacing these insights and trends with individuals and organizations across the U.S. we may be able to shift the conversation around water usage, while considering current climate conditions and trends.
 
 ### 6. Conclusion and Next Steps
+***Iteration & Testing***
+* Update for 2016-2023 data 
+* Conduct end user panel testing
+* Iterate on visuals to ensure easy access to the full story
 
+***Production and Publication***
+* Consider higher capacity platforms for visualizations to minimize load time performance
+* Source more recent climate data via API & Schedule Model Updates
+* Publish findings to build public awareness
