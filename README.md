@@ -258,10 +258,12 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
     * Users can see how much their cluster uses water in their home vs. how much is available
 
 **Driving Insights at Policymaker/Manager-Level** (e.g., water resource managers, agricultural authorities, environmental agencies, water conservation groups, etc.)
-* Irrigation Water Amount Withdrawn vs. Wastewater Reclaimed 
+* Irrigation Water Amount Withdrawn vs. Wastewater Reclaimed
+    * Can be used to understand the efficiency of water use in agriculture. By comparing the amount of water withdrawn for irrigation to the amount of wastewater reclaimed, policymakers and managers can see how much water is being wasted in the agricultural sector
 * Total Water Withdrawal vs. Water Withdrawn for Public Supply
+    * Can be used to understand the overall demand for water in a region. By comparing the total amount of water withdrawn to the amount of water withdrawn for public supply, policymakers and managers can see how much water is being used by households, businesses, and industries
 
-Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (\~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (\~35-40 counties per cluster). 
+Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (~35-40 counties per cluster). 
 
 
 [CONFIRM THAT BELOW CAN BE DELETED] 
@@ -285,6 +287,7 @@ Several options were tested in terms of identifying the number of clusters. Init
     - severe_drought: Indicator of severe drought conditions
     - extreme_drought: Indicator of extreme drought conditions
     - exceptional_drought: Indicator of exceptional drought conditions
+
     
 We then ensembled our 4 clusters into an additional cluster using KMeans, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
 
