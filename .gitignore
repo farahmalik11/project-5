@@ -128,7 +128,7 @@ ENV/
 .jupyter
 
 #large csv files
-*.csv
+# *.csv
 © 2021 GitHub, Inc.
 Help
 Support
