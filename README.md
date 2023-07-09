@@ -1,6 +1,7 @@
 <img src ="https://www.fostercity.org/sites/default/files/styles/gallery500/public/imageattachments/publicworks/page/6071/water-smart.png?itok=vRWn03Zw" style="float: left; margin: 20px; height: 80px">
 
 # Promoting Sustainable Water Practices: Clustering Across Counties and States
+##### _by: Bob Adams, Farah Malik, Bryan Ortiz, Andrew Seefeldt, and Jennafer Schweyen_
 ---
 
 # Problem Statement
@@ -245,11 +246,10 @@ Following our preliminary investigation, we explored county level correlations i
 
 <img src ="./EDA/moderate_drought.png">
 <img src ="./EDA/tmean_c.png">
+<img src ="./EDA/median_household_income.png">
 
 ### 3. Data Transformation and Modeling
-Following our initial EDA and visualization, KMeans clustering was used to explore connections in a multi-dimensional fashion to uncover correlations that are not easily seen in a one-dimensional map. The data was standard scaled and four separate clustering models were developed and tested.
-
-<img src ="./EDA/median_household_income.png">
+Following our initial EDA and visualization, KMeans clustering was used to explore connections and uncover correlations that are not easily seen in a two-dimensional map. The data was standard scaled and four separate clustering models were developed and tested.
 
 **Driving Insights at the Individual-Level**
 * Population vs. Median Income
@@ -260,6 +260,8 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
 **Driving Insights at Policymaker/Manager-Level** (e.g., water resource managers, agricultural authorities, environmental agencies, water conservation groups, etc.)
 * Irrigation Water Amount Withdrawn vs. Wastewater Reclaimed 
 * Total Water Withdrawal vs. Water Withdrawn for Public Supply
+
+Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (~35-40 counties per cluster). 
 
 
 [CONFIRM THAT BELOW CAN BE DELETED] 
@@ -286,7 +288,7 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
     
 We then ensembled our 4 clusters into an additional cluster using KMeans, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
 
-[2-5 SENTENCES ON TIME SERIES]
+[3-5 SENTENCES ON TIME SERIES]
 
 ### 4. Interactive Application
 [3-5 SENTENCES ON TABLEAU]
