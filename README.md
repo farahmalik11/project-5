@@ -10,9 +10,9 @@ The objective of this project is to use machine learning to build a clustering m
 
 # Data Dictionary and Data Preparation
 
-This analysis required a wide variety of data, including that on geographical counties, water usage, median income, temperature, and drought. Data was sourced from a variety of inputs, such as the U.S. Geological Survey (USGS) Circular reports, the National Weather Service, Nature.com, and the National Drought Mitigation Center. Further information on data acquisition, ingestion, and cleaning/preparation steps can be found in subsequent subsections.
+This analysis required various amounts of data, including that on geographical counties, water usage, median income, temperature, and drought. Data was sourced from a variety of inputs, such as the U.S. Geological Survey (USGS) Circular reports, the National Weather Service, Nature.com, and the National Drought Mitigation Center. Further information on data acquisition, ingestion, and cleaning/preparation steps can be found in subsequent subsections.
 
-All analysis and data preparation were done in Python or Google Colaboratory, using the following softwares: ```pandas```, ```numpy```, ```matplotlib.pyplot```, ```seaborn```, ```sklearn```, ```scipy```, and ```statsmodels```.
+All analysis and data preparation were done in Python or Google Colaboratory, using the following softwares: ```pandas```, ```numpy```, ```matplotlib.pyplot```, ```seaborn```, ```sklearn```, ```scipy```, and ```statsmodels```. Additionally, interactive applications/visualizations were done in Tableau Desktop and Streamlit.
 
 
 ### Geographical Data
@@ -191,9 +191,9 @@ write.csv(data, file = csv_file, row.names = FALSE)
 * Data Source: FIPS Codes maintained by Dunn & Bradstreets MDR Education, direct download [here](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.mdreducation.com%2Fpdfs%2FUS_FIPS_Codes.xls&wdOrigin=BROWSELINK).
 
 #### Data Preparation:
-1. Character issues pertaining to Spanish language accents uncovered from data download were updated (e.g., Doï¿½ï¿½a Ana County to Dona Ana County) within the CSV file
+1. Character issues pertaining to Spanish language accents uncovered from data download were updated (e.g., Doï¿½ï¿½a Ana County to Dona Ana County) within the original CSV file
 2. FIPS codes were merged in to the dataset by county name
-    - 6 county names were updated to match those in the water dataset
+    - 6 county names were updated beforehand to match those in the water dataset
         - Anchorage Municipality --> Municipality of Anchorage
         - Juneau City and Borough --> City & Borough of Juneau
         - Sitka City and Borough --> City & Borough of Sitka
@@ -222,7 +222,7 @@ Our project will investigate water consumption patterns across different countie
 By the end of this project, we will have an enhanced understanding of water consumption patterns which will contribute to sustainable water management practices and provide valuable insights for individuals and stakeholders involved in water resource planning, policy-making, and conservation efforts.
 
 ## Methodology and Analysis
-To complete this analysis, a ___ was built using ____.
+To complete this analysis, several KMeans clustering unsupervised models were built with the aim that consumers at the micro-level (i.e., individuals) and macro-level (e.g., policymakers, water resource managers, agricultural authorities, environmental agencies, water conservation groups, etc.) will explore and examine counties of like consumption patterns to their own, and subsequently gauge the feasibility and sustainability of those patterns. DBScan was also tested as an alternative to KMeans that was robust to outliers, but was not further modeled for purposes of computational efficiency and after a predetermination of the desired number of clusters was realized. Multi-year temperature and drought data was also modeled using time-series analysis to gain an understanding of long-term climate patterns, abrupt climate-related events, trends and variability in temperature and drought conditions, and potential insights into future climate scenarios. Our models were operationalized via a Streamlit application and Tableau interactive choropleth.
 
 The high-level process for this analysis is outlined below.
 
@@ -247,16 +247,28 @@ Following our preliminary investigation, we explored county level correlations i
 <img src ="./EDA/tmean_c.png">
 
 ### 3. Data Transformation and Modeling
-Following our initial EDA and visualization, K-Means clustering was used to explore connections in a multi-dimensional fashion to uncover correlations that are not easily seen in a one-dimensional map. The data was standard scaled and four separate clustering models were developed and tested.
+Following our initial EDA and visualization, KMeans clustering was used to explore connections in a multi-dimensional fashion to uncover correlations that are not easily seen in a one-dimensional map. The data was standard scaled and four separate clustering models were developed and tested.
 
 <img src ="./EDA/median_household_income.png">
 
+**Driving Insights at the Individual-Level**
+* Population vs. Median Income
+    * Users can see what cluster they are in for baseline understanding of socioeconomic considerations, water demand, and resource management
+* Public Supply Water Withdrawal vs. Public Supply Domestic Use
+    * Users can see how much their cluster uses water in their home vs. how much is available
+
+**Driving Insights at Policymaker/Manager-Level** (e.g., water resource managers, agricultural authorities, environmental agencies, water conservation groups, etc.)
+* Irrigation Water Amount Withdrawn vs. Wastewater Reclaimed 
+* Total Water Withdrawal vs. Water Withdrawn for Public Supply
+
+
+[CONFIRM THAT BELOW CAN BE DELETED] 
 - Water Supply
     - ps_gwpop: Population served by groundwater supply
     - ps_swpop: Population served by surface water supply
     - ps_topop: Population served by total water supply
 - Water Consumption
-    - ps_wgwto: Total water consumed from groundwater supply
+    - ps_wgwto: Total water consumed from groundwater supplygit 
     - ps_wswto: Total water consumed from surface water supply
     - ps_wtotl: Total water consumed (overall)
 - Demographic and Economic Factors
@@ -272,10 +284,17 @@ Following our initial EDA and visualization, K-Means clustering was used to expl
     - extreme_drought: Indicator of extreme drought conditions
     - exceptional_drought: Indicator of exceptional drought conditions
     
-We then ensembled our 4 clusters into an additional cluster using K-means, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
+We then ensembled our 4 clusters into an additional cluster using KMeans, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
+
+[2-5 SENTENCES ON TIME SERIES]
+
+### 4. Interactive Application
+[3-5 SENTENCES ON TABLEAU]
+[3-5 SENTENCES ON STREAMLIT]
 
 
-### 4. Key Findings and Insights 
+### 5. Key Findings and Insights 
+Our analysis and applications showed that there is widespread variation in water supply and consumption in many different areas (e.g., industrial, livestock, aquaculture, mining, irrigation, thermoelectric), as well as in county-level temperature and drought changes. Our models showed ...
 
-### 5. Conclusion and Next Steps
+### 6. Conclusion and Next Steps
 
