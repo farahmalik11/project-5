@@ -231,7 +231,7 @@ The high-level process for this analysis is outlined below.
 
 In addition to the data preparation performed on each source dataset (see [Data Dictionary and Data Preparation](#Data-Dictionary-and-Data-Preparation) section), a master dataset was produced with the following key actions:
 - All data outside the year 2015 was removed
-- Five source datasets (drought information, temperature information, county information, income information, and the USCO information) were combined by FIPS code (e.g., state-county code)
+- Five source datasets (drought information, temperature information, county information, income information, and the USGS water information) were combined by FIPS code (e.g., state-county code)
 - Columns we adjusted to snake-case for ease of use
 - Rows with 98% NaN were dropped; these NaN counties were largely made up of Hawaii, Alaska or USA territories. Due to subsequent scarcity of data for these areas, all rows for Alaska, Hawaii, Virgin Islands, and Puerto Rico were dropped.
 
@@ -240,13 +240,13 @@ The fully combined and cleaned data consisted of 48 states and DC, as well as 18
 ### 2. Data Exploration and Visualization
 We began our analysis with a high-level exploration of the combined data file, including describing all numeric variables, visualizing the distribution of water withdrawal and consumption at various levels of granularity (e.g., irrigation [crops vs. golf fields], livestock, aquaculture, mining, thermoelectric [once through vs. recirculating]),and looking at correlations between different temperatures and drought conditions.
 
-<img src ="./EDA/Water_Usage_by_Cat.png">
+<img src ="./code/02_EDA/images/Water_Usage_by_Cat.png">
 
 Following our preliminary investigation, we explored county level correlations in our combined dataset using Shapely files. Each column was mapped individually onto it's own graphic, but no notable insights were observed beyond common knowledge/assumptions. For example, we observed that the North is colder than the South, Napa Valley draws more water for irrigation than most areas, large cities use larger amounts of drinking water, and the southwest have more drought days than the rest of the country. 
 
-<img src ="./EDA/moderate_drought.png">
-<img src ="./EDA/tmean_c.png">
-<img src ="./EDA/median_household_income.png">
+<img src ="./code/02_EDA/images/moderate_drought.png">
+<img src ="./code/02_EDA/images/tmean_c.png">
+<img src ="./code/02_EDA/images/median_household_income.png">
 
 ### 3. Data Transformation and Modeling
 Following our initial EDA and visualization, KMeans clustering was used to explore connections and uncover correlations that are not easily seen in a two-dimensional map. The data was standard scaled and four separate clustering models were developed and tested.
@@ -265,32 +265,6 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
 
 Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (\~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (\~35-40 counties per cluster). 
 
-
-[CONFIRM THAT BELOW CAN BE DELETED] 
-- Water Supply
-    - ps_gwpop: Population served by groundwater supply
-    - ps_swpop: Population served by surface water supply
-    - ps_topop: Population served by total water supply
-- Water Consumption
-    - ps_wgwto: Total water consumed from groundwater supplygit 
-    - ps_wswto: Total water consumed from surface water supply
-    - ps_wtotl: Total water consumed (overall)
-- Demographic and Economic Factors
-    - population: Total population in the state-county region
-    - median_household_income: Median household income in the region
-- Climate Factors
-    - tmean_c: Mean temperature
-    - tdmean_c: Mean dew point temperature
-    - normal_wet: Indicator of normal wetness conditions
-    - abnormally_dry: Indicator of abnormally dry conditions
-    - moderate_drought: Indicator of moderate drought conditions
-    - severe_drought: Indicator of severe drought conditions
-    - extreme_drought: Indicator of extreme drought conditions
-    - exceptional_drought: Indicator of exceptional drought conditions
-
-    
-We then ensembled our 4 clusters into an additional cluster using KMeans, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
-
 [3-5 SENTENCES ON TIME SERIES]
 
 ### 4. Interactive Application
@@ -302,4 +276,5 @@ We then ensembled our 4 clusters into an additional cluster using KMeans, which 
 Our analysis and applications showed that there is widespread variation in water supply and consumption in many different areas (e.g., industrial, livestock, aquaculture, mining, irrigation, thermoelectric), as well as in county-level temperature and drought changes. Our models showed ...
 
 ### 6. Conclusion and Next Steps
+
 
