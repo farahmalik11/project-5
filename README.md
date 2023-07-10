@@ -300,8 +300,13 @@ It can be difficult to isolate long term trends from time series data, especiall
 <img src = "code/02_EDA/images/MonthlyAverageTemperature_Decomp_Alameda_CA.png">
 
 ### 4. Interactive Application
-[3-5 SENTENCES ON TABLEAU]
-[3-5 SENTENCES ON STREAMLIT]
+To operationalize and showcase our models and subsequent results, we leverage an interactive Streamlit application. This gives the user the opportunity to highlight data of interest regarding their county with an interactive Tableau choropleth display, our chosen model clusters, and various time series displays. 
+
+Starting at an "About" page, the user is given background information pertaining to the project, as well as the purpose and a summary of the insights and findings. The user then can look at concise visualizations of categorized water usage in the contiguous United States, climate data regarding temperature and drought conditions, and income data nationwide. 
+
+Next, the user may view an interactive choropleth dashboard created on Tableau Community which allows a user to hover over maps of the contiguous United States and obtain county-level data. Five individual choropleths were engineered to display to the user how each county differs by population vs. median income, water usage for irrigation, total domestic use of water, and total use of water vs. the public supply. The user is prompted to select a state, county, and map view to visualize various data sets. With this, the user can visually compare states and counties and dive deeper into their regional water usage data.
+
+On the following pages of the Streamlit application, the user is prompted to select their state and county, and is then presented with information and visualizations pertaining to water usage, climate, and income demographics. For further levels of detail, the full data frame, data dictionary, and data citations, have been provided on the first and last pages.
 
 
 ### 5. Key Findings and Insights 
