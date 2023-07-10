@@ -244,7 +244,7 @@ In addition to the data preparation performed on each source dataset (see [Data 
 - Columns we adjusted to snake-case for ease of use
 - Rows with 98% NaN were dropped; these NaN counties were largely made up of Hawaii, Alaska or USA territories. Due to subsequent scarcity of data for these areas, all rows for Alaska, Hawaii, Virgin Islands, and Puerto Rico were dropped.
 
-The fully combined and cleaned data consisted of 48 states and DC, as well as 1800+ counties.  
+The fully combined and cleaned data consisted of 48 states and DC, as well as 3100+ counties.  
 
 ### 2. Data Exploration and Visualization
 We began our analysis with a high-level exploration of the combined data file, including describing all numeric variables, visualizing the distribution of water withdrawal and consumption at various levels of granularity (e.g., irrigation [crops vs. golf fields], livestock, aquaculture, mining, thermoelectric [once through vs. recirculating]),and looking at correlations between different temperatures and drought conditions.
@@ -272,7 +272,7 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
 * Total Water Withdrawal vs. Water Withdrawn for Public Supply
     * Can be used to understand the overall demand for water in a region. By comparing the total amount of water withdrawn to the amount of water withdrawn for public supply, policymakers and managers can see how much water is being used by households, businesses, and industries
 
-Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (\~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (\~35-40 counties per cluster). 
+Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (\~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (\~60 counties per cluster). 
 
 #### Time Series
 Climate and Drought Condition data were resampled at a monthly scale using mean values.  We used these values to create engaging and informative visualizations for end users to explore selected counties in the context of the state.
@@ -305,7 +305,12 @@ It can be difficult to isolate long term trends from time series data, especiall
 
 
 ### 5. Key Findings and Insights 
-Our analysis and applications showed that there is widespread variation in water supply and consumption in many different areas (e.g., industrial, livestock, aquaculture, mining, irrigation, thermoelectric), as well as in county-level temperature and drought changes. Our models showed that sufficient similarities exist between counties to enable clustering and categorization of counties.  Furthermore, engaging storytelling is possible with publicly available data.  By surfacing these insights and trends with individuals and organizations across the U.S. we may be able to shift the conversation around water usage, while considering current climate conditions and trends.
+Our analysis and applications showed that there is widespread variation in water supply and consumption in many different areas (e.g., industrial, livestock, aquaculture, mining, irrigation, thermoelectric), as well as in county-level temperature and drought changes. Our models showed that sufficient similarities exist between counties to enable clustering and categorization of counties. It was seen that insights can be driven where unexpected, for example:
+* While livestock, mining, and aquaculture were not among the highest uses of water consumption, comparative to other categories, the consumption in these areas was highly concentrated to a few states/counties. With a targeted approach, these counties may have the opportunity to spearhead improvements in their processes which could lead to substantial improvements.
+* There was a slight suggested correlation between water scarcity and higher income states/counties. Is it possible that wealthier areas pull more water to an extent that constructive campaigns or, at least awareness, may empower sustainable lifestyle changes?
+* There is a constant presence of outlier counties in all models we developed, namely in counties using high amounts of public supply water for domestic use, and the number of counties not investing more in irrigating with reclaimed wastewaster to conserve stress on limited freshwater resources. These present immediate opportunities proactive engagement and taking meaningful action.
+
+Furthermore, engaging storytelling is possible with publicly available data. By surfacing these insights and trends with individuals and organizations across the U.S. we may be able to shift the conversation around water usage, while considering current climate conditions and trends.
 
 ### 6. Conclusion and Next Steps
 ***Iteration & Testing***
@@ -317,3 +322,5 @@ Our analysis and applications showed that there is widespread variation in water
 * Consider higher capacity platforms for visualizations to minimize load time performance
 * Source more recent climate data via API & Schedule Model Updates
 * Publish findings to build public awareness
+
+With our models and interactive applications, we have enabled a comprehensive look at water consumption patterns which can help users gain valuable insights and inform sustainable water management practices. With clustering and time-series, we outputs serve as a significant resource for individuals, stakeholders, and policymakers involved in water resource planning and conservation efforts. By harnessing these insights, we can work towards a more efficient and responsible use of water resources, ensuring their availability for future generations.
