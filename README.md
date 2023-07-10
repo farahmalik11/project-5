@@ -238,8 +238,9 @@ The high-level process for this analysis is outlined below.
 ### 1. Data Cleaning
 
 In addition to the data preparation performed on each source dataset (see [Data Dictionary and Data Preparation](#Data-Dictionary-and-Data-Preparation) section), a master dataset was produced with the following key actions:
+
 - All data outside the year 2015 was removed (where direct correlations with water usage data are critical)
-- Five source datasets (drought information, temperature information, county information, income information, and the USCO information) were combined using FIPS code (e.g., state-county code)
+- Five source datasets (drought information, temperature information, county information, income information, and the USGS water information) were combined using FIPS code (e.g., state-county code)
 - Columns we adjusted to snake-case for ease of use
 - Rows with 98% NaN were dropped; these NaN counties were largely made up of Hawaii, Alaska or USA territories. Due to subsequent scarcity of data for these areas, all rows for Alaska, Hawaii, Virgin Islands, and Puerto Rico were dropped.
 
@@ -248,13 +249,13 @@ The fully combined and cleaned data consisted of 48 states and DC, as well as 18
 ### 2. Data Exploration and Visualization
 We began our analysis with a high-level exploration of the combined data file, including describing all numeric variables, visualizing the distribution of water withdrawal and consumption at various levels of granularity (e.g., irrigation [crops vs. golf fields], livestock, aquaculture, mining, thermoelectric [once through vs. recirculating]),and looking at correlations between different temperatures and drought conditions.
 
-<img src ="./EDA/Water_Usage_by_Cat.png">
+<img src ="./code/02_EDA/images/Water_Usage_by_Cat.png">
 
 Following our preliminary investigation, we explored county level correlations in our combined dataset using Shapely files. Each column was mapped individually onto it's own graphic, but no notable insights were observed beyond common knowledge/assumptions. For example, we observed that the North is colder than the South, Napa Valley draws more water for irrigation than most areas, large cities use larger amounts of drinking water, and the southwest have more drought days than the rest of the country. 
 
-<img src ="./EDA/moderate_drought.png">
-<img src ="./EDA/tmean_c.png">
-<img src ="./EDA/median_household_income.png">
+<img src ="./code/02_EDA/images/moderate_drought.png">
+<img src ="./code/02_EDA/images/tmean_c.png">
+<img src ="./code/02_EDA/images/median_household_income.png">
 
 ### 3. Data Transformation and Modeling
 Following our initial EDA and visualization, KMeans clustering was used to explore connections and uncover correlations that are not easily seen in a two-dimensional map. The data was standard scaled and four separate clustering models were developed and tested.
@@ -273,41 +274,15 @@ Following our initial EDA and visualization, KMeans clustering was used to explo
 
 Several options were tested in terms of identifying the number of clusters. Initially, inertia and silhouette scores guided the outputs, but thereafter, we decided it would be more impactful for eventual users to see how their county compared to only a handful of others. We directed the model to identify 300 clusters (\~10 counties per cluster) and mapped these accordingly to be seen via Streamlit and Tableau. The granularity of county data, however, presented visual issues when mapped to a larger number of clusters, therefore our final models were updated to use only 50 clusters (\~35-40 counties per cluster). 
 
-
-[CONFIRM THAT BELOW CAN BE DELETED] 
-- Water Supply
-    - ps_gwpop: Population served by groundwater supply
-    - ps_swpop: Population served by surface water supply
-    - ps_topop: Population served by total water supply
-- Water Consumption
-    - ps_wgwto: Total water consumed from groundwater supplygit 
-    - ps_wswto: Total water consumed from surface water supply
-    - ps_wtotl: Total water consumed (overall)
-- Demographic and Economic Factors
-    - population: Total population in the state-county region
-    - median_household_income: Median household income in the region
-- Climate Factors
-    - tmean_c: Mean temperature
-    - tdmean_c: Mean dew point temperature
-    - normal_wet: Indicator of normal wetness conditions
-    - abnormally_dry: Indicator of abnormally dry conditions
-    - moderate_drought: Indicator of moderate drought conditions
-    - severe_drought: Indicator of severe drought conditions
-    - extreme_drought: Indicator of extreme drought conditions
-    - exceptional_drought: Indicator of exceptional drought conditions
-
-    
-We then ensembled our 4 clusters into an additional cluster using KMeans, which allowed us to explore the relationships in the first four individual clusters along with the final one.  
-
 #### Time Series
 Climate and Drought Condition data were resampled at a monthly scale using mean values.  We used these values to create engaging and informative visualizations for end users to explore selected counties in the context of the state.
 
 ##### Filled Area Charts
 Area charts depicting monthly temperature ranges (min-mean-max) are provided, annual averages and a fixed annual mean temperature, indexed against the first year in the date range.  This helps keep track of longer term trends.
-<img src ="code/02_EDA/images/temp_trend_Alameda_CA.png">
+<img src ="./code/02_EDA/images/temp_trend_Alameda_CA.png">
 
 Drought Conditions are visualized similarly using area charts.  As the drought categories are sequential (Moderate > Severe > Extreme > Exceptional), values are calculated as the percent of population experiencing at least the specified drought condition.  Areas tend to enter and exit drought conditions sequentially.  This method of visualization reduces visual noise while highlighting the 'walks' up and down the drought conditions.
-<img src = "code/02_EDA/images/drought_trend_Alameda_CA.png">
+<img src = "./code/02_EDA/images/drought_trend_Alameda_CA.png">
 
 
 ##### Animated Choropleths
@@ -315,9 +290,9 @@ Choropleths (national maps, where counties are color coded in accordance with se
 
 To simplify visualizations and improve loading time performance, geography and climate data are filtered to the relevant state for the user selected county.  This enables users to view changes in temperature and drought conditions in their area and in neighboring counties.
 
-<img src = "code/02_EDA/images/Alameda_CA_Exceptional_Drought.gif">
+<img src = "./code/02_EDA/images/Alameda_CA_Exceptional_Drought.gif">
 
-<img src = "code/02_EDA/images/Alameda_CA_12m_Mean_Temp_Change.gif">
+<img src = "./code/02_EDA/images/Alameda_CA_12m_Mean_Temp_Change.gif">
 
 ##### Seasonality Decomposition
 It can be difficult to isolate long term trends from time series data, especially when seasonality plays such a critical role as in drought and temperature in most counties.  STL Seasonality Decomposition is employed to separate long term trends from seasonal trends.
