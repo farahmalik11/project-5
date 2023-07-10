@@ -313,11 +313,7 @@ Our analysis and applications showed that there is widespread variation in water
 * Conduct end user panel testing
 * Iterate on visuals to ensure easy access to the full story
 
-<<<<<<< HEAD
-
-=======
 ***Production and Publication***
 * Consider higher capacity platforms for visualizations to minimize load time performance
 * Source more recent climate data via API & Schedule Model Updates
 * Publish findings to build public awareness
->>>>>>> 9e04c95f0b71e941ef64aa4ecc9cc165a7d378e4
