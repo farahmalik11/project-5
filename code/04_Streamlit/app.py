@@ -37,7 +37,7 @@ st.subheader('''
 
 page = st.sidebar.selectbox(
     'Page',
-    ('About', 'Exploratory Data Analysis', 'Time Series', 'Interactive Maps', 'Cluster Charts', 'Data Frame')
+    ('About', 'Exploratory Data Analysis', 'Interactive Choropleths', 'Time Series', 'Cluster Charts', 'Data Frame')
 )
 
 if page == 'About':
@@ -85,7 +85,7 @@ We have created these visualizations, models, and dashboards using numerical dat
 
 
 elif page == 'Exploratory Data Analysis':
-    # header
+
     st.subheader('Exploratory Data Analysis')
     st.write('''
 We began our analysis with a high-level exploration of the combined data file, including describing all 
@@ -95,6 +95,7 @@ granularity (e.g., irrigation [crops vs. golf fields], livestock, aquaculture, m
 conditions.
              ''')
     
+    # EDA completed and images created by Andrew Seefeldt
     image1 = Image.open('../02_EDA/images/Water_Usage_by_Cat.png')
     st.image(image1, 
              caption=' ', 
@@ -131,19 +132,16 @@ southwest have more drought days than the rest of the country.
              channels="RGB", 
              output_format="auto")
     
+
     
-elif page == 'Time Series':
+elif page == 'Interactive Choropleths':
 
-    st.title('What did we find?')
-
-    # mon = pd.read_csv('../../data/clean-data/Monthly_Temp_Drought_Combo.csv', dtype = {'FIPS':str})
-    # mon.drop(columns = 'Unnamed: 0', inplace = True)
-
-
-elif page == 'Interactive Maps':
+    st.header("Dive deeper into your regional water usage data")
+    st.markdown('''
+                #### Draw visual comparison between states and counties!
+                ''')
     
-    st.title('What did we find?')
-
+    # Tableau Dashboard created by Andrew Seefeldt
     # Embedded Tableau Code
     # Cite: https://discuss.streamlit.io/t/how-to-embed-the-tableau-with-iframe-properly/17408
     import streamlit as st
@@ -156,42 +154,741 @@ elif page == 'Interactive Maps':
         width=900,
         height=650,
         scrolling=True
-)
+    )
+    
+    
+elif page == 'Time Series':
 
- 
-    # Choropleths
-    #cite: https://plotly.com/python/county-choropleth/ > Redirects to manage deprecation: https://plotly.com/python/choropleth-maps/
+    st.header("County-level Temp and Drought Time Series")
+    st.markdown('''
+                Climate and Drought Condition data were resampled at a monthly scale using mean values.
+                ''')
+    st.sidebar.title("Time Series Trend Selector")
+    st.sidebar.markdown("Select the charts accordingly:")
+    # st.sidebar.checkbox("Show Analysis by County", True, key=1)
 
+    #get the state and county selected in the selectbox
+    state = st.sidebar.selectbox('Select your state', ('AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE',
+                                'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA',
+                                'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 
+                                'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
+                                'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'))
+    if state == 'AL':
+        county = st.sidebar.selectbox('Select your county', ('Autauga', 'Baldwin', 'Barbour', 'Bibb', 'Blount',
+                                'Bullock', 'Butler', 'Calhoun', 'Chambers', 'Cherokee', 'Chilton',
+                                'Choctaw', 'Clarke', 'Clay', 'Cleburne', 'Coffee', 'Colbert', 'Conecuh',
+                                'Coosa', 'Covington', 'Crenshaw', 'Cullman', 'Dale', 'Dallas', 'DeKalb', 
+                                'Elmore', 'Escambia', 'Etowah', 'Fayette', 'Franklin', 'Geneva', 'Greene',
+                                'Hale', 'Henry', 'Houston', 'Jackson', 'Jefferson', 'Lamar', 'Lauderdale',
+                                'Lawrence', 'Lee', 'Limestone', 'Lowndes', 'Macon', 'Madison', 'Marengo',
+                                'Marion', 'Marshall', 'Mobile', 'Monroe', 'Montgomery', 'Morgan', 'Perry',
+                                'Pickens', 'Pike', 'Randolph', 'Russell', 'Shelby', 'St. Clair', 'Sumter', 
+                                'Talladega', 'Tallapoosa', 'Tuscaloosa', 'Walker', 'Washington', 'Wilcox', 
+                                'Winston'))
+
+    elif state == 'AK':
+        county = st.sidebar.selectbox('Select your county', ('Aleutians East', 'Aleutians West', 'Anchorage',
+                                'Bethel', 'Bristol Bay', 'Chugach', 'Copper River', 'Denali', 'Dillingham',
+                                'Fairbanks North Star', 'Haines', 'Hoonah-Angoon', 'Juneau', 'Kenai Peninsula',
+                                'Ketchikan Gateway', 'Kodiak Island', 'Kusilvak', 'Lake and Peninsula',
+                                'Matanuska-Susitna', 'Nome', 'North Slope', 'Northwest Arctic', 'Petersburg Borough',
+                                'Prince of Wales-Hyder', 'Sitka', 'Skagway', 'Southeast Fairbanks', 'Wrangell',
+                                'Yakutat', 'Yukon-Koyukuk'))
+
+    elif state == 'AZ':
+        county = st.sidebar.selectbox('Select your county', ('Apache', 'Cochise', 'Coconino', 'Gila', 'Graham',
+                                'Greenlee', 'La Paz', 'Maricopa', 'Mohave', 'Navajo', 'Pima', 'Pinal',
+                                'Santa Cruz', 'Yavapai', 'Yuma'))
+
+    elif state == 'CA':
+        county = st.sidebar.selectbox('Select your county', ('Alameda', 'Alpine', 'Amador', 'Butte', 'Calaveras',
+                                'Colusa', 'Contra Costa', 'Del Norte', 'El Dorado', 'Fresno', 'Glenn',
+                                'Humboldt', 'Imperial', 'Inyo', 'Kern', 'Kings', 'Lake', 'Lassen',
+                                'Los Angeles', 'Madera', 'Marin', 'Mariposa', 'Mendocino', 'Merced', 'Modoc',
+                                'Mono', 'Monterey', 'Napa', 'Nevada', 'Orange', 'Placer', 'Plumas',
+                                'Riverside', 'Sacramento', 'San Benito', 'San Bernardino', 'San Diego',
+                                'San Francisco', 'San Joaquin', 'San Luis Obispo', 'San Mateo', 'Santa Barbara',
+                                'Santa Clara', 'Santa Cruz', 'Shasta', 'Sierra', 'Siskiyou', 'Solano', 'Sonoma',
+                                'Stanislaus', 'Sutter', 'Tehama', 'Trinity', 'Tulare', 'Tuolumne', 'Ventura',
+                                'Yolo', 'Yuba'))
+
+    elif state == 'CO':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Alamosa', 'Arapahoe', 'Archuleta', 'Baca', 'Bent',
+                                'Boulder', 'Broomfield', 'Chaffee', 'Cheyenne', 'Clear Creek', 'Conejos',
+                                'Costilla', 'Crowley', 'Custer', 'Delta', 'Denver', 'Dolores', 'Douglas', 'Eagle',
+                                'El Paso', 'Elbert', 'Fremont', 'Garfield', 'Gilpin', 'Grand', 'Gunnison',
+                                'Hinsdale', 'Huerfano', 'Jackson', 'Jefferson', 'Kiowa', 'Kit Carson', 'La Plata',
+                                'Lake', 'Larimer', 'Las Animas', 'Lincoln', 'Logan', 'Mesa', 'Mineral', 'Moffat',
+                                'Montezuma', 'Montrose', 'Morgan', 'Otero', 'Ouray', 'Park', 'Phillips', 'Pitkin',
+                                'Prowers', 'Pueblo', 'Rio Blanco', 'Rio Grande', 'Routt', 'Saguache', 'San Juan',
+                                'San Miguel', 'Sedgwick', 'Summit', 'Teller', 'Washington', 'Weld', 'Yuma'))
+
+    elif state == 'CT':
+        county = st.sidebar.selectbox('Select your county', ('Fairfield', 'Hartford', 'Litchfield', 'Middlesex',
+                                'New Haven', 'New London', 'Tolland', 'Windham'))
+
+    elif state == 'DE':
+        county = st.sidebar.selectbox('Select your county', ('Kent', 'New Castle', 'Sussex'))
+
+    elif state == 'DC':
+        county = st.sidebar.selectbox('Select your county', ('District of Columbia'))
+
+    elif state == 'FL':
+        county = st.sidebar.selectbox('Select your county', ('Alachua', 'Baker', 'Bay', 'Bradford', 'Brevard', 'Broward',
+                                'Calhoun', 'Charlotte', 'Charlotte', 'Citrus', 'Citrus', 'Clay', 'Collier',
+                                'Columbia', 'DeSoto', 'Dixie', 'Duval', 'Escambia', 'Flagler', 'Franklin',
+                                'Franklin', 'Gadsden', 'Gilchrist', 'Glades', 'Gulf', 'Hamilton', 'Hardee', 'Hendry',
+                                'Hernando', 'Highlands', 'Hillsborough', 'Hillsborough', 'Holmes', 'Indian River',
+                                'Jackson', 'Jefferson', 'Lafayette', 'Lake', 'Lee', 'Leon', 'Levy', 'Liberty',
+                                'Lower Keys in Monroe', 'Madison', 'Mainland Monroe', 'Manatee', 'Marion', 'Martin', 
+                                'Miami-Dade', 'Middle Keys in Monroe', 'Nassau', 'Okaloosa', 'Okeechobee', 'Orange',
+                                'Osceola', 'Palm Beach', 'Pasco', 'Pinellas', 'Pinellas', 'Polk', 'Putnam', 'Santa Rosa',
+                                'Sarasota', 'Sarasota', 'Seminole', 'St. Johns', 'St. Lucie', 'Sumter', 'Suwannee',
+                                'Taylor', 'Union', 'Upper Keys in Monroe', 'Volusia', 'Wakulla', 'Walton', 'Washington'))
+
+    elif state == 'GA':
+        county = st.sidebar.selectbox('Select your county', ('Appling', 'Atkinson', 'Bacon', 'Baker', 'Baldwin', 'Banks',
+                                'Barrow', 'Bartow', 'Ben Hill', 'Berrien', 'Bibb', 'Bleckley', 'Brantley', 'Brooks',
+                                'Bryan', 'Bulloch', 'Burke', 'Butts', 'Calhoun', 'Camden', 'Candler', 'Carroll',
+                                'Catoosa', 'Charlton', 'Chatham', 'Chattahoochee', 'Chattooga', 'Cherokee', 'Clarke',
+                                'Clay', 'Clayton', 'Clinch', 'Cobb', 'Coffee', 'Colquitt', 'Columbia', 'Cook',
+                                'Coweta', 'Crawford', 'Crisp', 'Dade', 'Dawson', 'DeKalb', 'Decatur', 'Dodge', 'Dooly',
+                                'Dougherty', 'Douglas', 'Early', 'Echols', 'Effingham', 'Elbert', 'Emanuel', 'Evans',
+                                'Fannin', 'Fayette', 'Floyd', 'Forsyth', 'Franklin', 'Fulton', 'Gilmer', 'Glascock',
+                                'Glynn', 'Gordon', 'Grady', 'Greene', 'Gwinnett', 'Habersham', 'Hall', 'Hancock',
+                                'Haralson', 'Harris', 'Hart', 'Heard', 'Henry', 'Houston', 'Irwin', 'Jackson', 'Jasper',
+                                'Jeff Davis', 'Jefferson', 'Jenkins', 'Johnson', 'Jones', 'Lamar', 'Lanier', 'Laurens',
+                                'Lee', 'Liberty', 'Lincoln', 'Long', 'Lowndes', 'Lumpkin', 'Macon', 'Madison', 'Marion',
+                                'McDuffie', 'McIntosh', 'Meriwether', 'Miller', 'Mitchell', 'Monroe', 'Montgomery',
+                                'Morgan', 'Murray', 'Muscogee', 'Newton', 'Oconee', 'Oglethorpe', 'Paulding', 'Peach',
+                                'Pickens', 'Pierce', 'Pike', 'Polk', 'Pulaski', 'Putnam', 'Quitman', 'Rabun', 'Randolph',
+                                'Richmond', 'Rockdale', 'Schley', 'Screven', 'Seminole', 'Spalding', 'Stephens',
+                                'Stewart', 'Sumter', 'Talbot', 'Taliaferro', 'Tattnall', 'Taylor', 'Telfair', 'Terrell',
+                                'Thomas', 'Tift', 'Toombs', 'Towns', 'Treutlen', 'Troup', 'Turner', 'Twiggs', 'Union',
+                                'Upson', 'Walker', 'Walton', 'Ware', 'Warren', 'Washington', 'Wayne', 'Webster', 'Wheeler',
+                                'White', 'Whitfield', 'Wilcox', 'Wilkes', 'Wilkinson', 'Worth'))
+
+    elif state == 'HI':
+        county = st.sidebar.selectbox('Select your county', ('Hawaii', 'Kahoolawe', 'Kauai', 'Lanai', 'Maui', 'Molokai', 'Niihau', 'Oahu'))
+
+    elif state == 'ID':
+        county = st.sidebar.selectbox('Select your county', ('Ada', 'Adams', 'Bannock', 'Bear Lake', 'Benewah', 'Bingham',
+                                'Blaine', 'Boise', 'Bonner', 'Bonneville', 'Boundary', 'Butte', 'Camas',
+                                'Canyon', 'Caribou', 'Cassia', 'Clark', 'Clearwater', 'Custer', 'Elmore', 'Franklin',
+                                'Fremont', 'Gem', 'Gooding', 'Idaho', 'Jefferson', 'Jerome', 'Kootenai',
+                                'Latah', 'Lemhi', 'Lewis', 'Lincoln', 'Madison', 'Minidoka', 'Nez Perce',
+                                'Oneida', 'Owyhee', 'Payette', 'Power', 'Shoshone', 'Teton', 'Twin Falls',
+                                'Valley', 'Washington'))
+
+    elif state == 'IL':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Alexander', 'Bond', 'Boone', 'Brown', 'Bureau',
+                                'Calhoun', 'Carroll', 'Cass', 'Champaign', 'Christian', 'Clark', 'Clay',
+                                'Clinton', 'Coles', 'Cook', 'Crawford', 'Cumberland', 'De Kalb', 'De Witt',
+                                'Douglas', 'DuPage', 'Edgar', 'Edwards', 'Effingham', 'Fayette', 'Ford',
+                                'Franklin', 'Fulton', 'Gallatin', 'Greene', 'Grundy', 'Hamilton', 'Hancock',
+                                'Hardin', 'Henderson', 'Henry', 'Iroquois', 'Jackson', 'Jasper', 'Jefferson',
+                                'Jersey', 'Jo Daviess', 'Johnson', 'Kane', 'Kankakee', 'Kendall', 'Knox',
+                                'La Salle', 'Lake', 'Lawrence', 'Lee', 'Livingston', 'Logan', 'Macon',
+                                'Macoupin', 'Madison', 'Marion', 'Marshall', 'Mason', 'Massac', 'McDonough',
+                                'McHenry', 'McLean', 'Menard', 'Mercer', 'Monroe', 'Montgomery', 'Morgan',
+                                'Moultrie', 'Ogle', 'Peoria', 'Perry', 'Piatt', 'Pike', 'Pope', 'Pulaski',
+                                'Putnam', 'Randolph', 'Richland', 'Rock Island', 'Saline', 'Sangamon',
+                                'Schuyler', 'Scott', 'Shelby', 'St. Clair', 'Stark', 'Stephenson', 'Tazewell',
+                                'Union', 'Vermilion', 'Wabash', 'Warren', 'Washington', 'Wayne', 'White',
+                                'Whiteside', 'Will', 'Williamson', 'Winnebago', 'Woodford'))
+
+    elif state == 'IN':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Allen', 'Bartholomew', 'Benton', 'Blackford',
+                                'Boone', 'Brown', 'Carroll', 'Cass', 'Clark', 'Clay', 'Clinton', 'Crawford',
+                                'Daviess', 'De Kalb', 'Dearborn', 'Decatur', 'Delaware', 'Dubois', 'Elkhart',
+                                'Fayette', 'Floyd', 'Fountain', 'Franklin', 'Fulton', 'Gibson', 'Grant', 'Greene',
+                                'Hamilton', 'Hancock', 'Harrison', 'Hendricks', 'Henry', 'Howard', 'Huntington',
+                                'Jackson', 'Jasper', 'Jay', 'Jefferson', 'Jennings', 'Johnson', 'Knox',
+                                'Kosciusko', 'La Porte', 'Lagrange', 'Lake', 'Lawrence', 'Madison', 'Marion',
+                                'Marshall', 'Martin', 'Miami', 'Monroe', 'Montgomery', 'Morgan', 'Newton', 'Noble',
+                                'Ohio', 'Orange', 'Owen', 'Parke', 'Perry', 'Pike', 'Porter', 'Posey', 'Pulaski',
+                                'Putnam', 'Randolph', 'Ripley', 'Rush', 'Scott', 'Shelby', 'Spencer', 'St. Joseph',
+                                'Starke', 'Steuben', 'Sullivan', 'Switzerland', 'Tippecanoe', 'Tipton', 'Union',
+                                'Vanderburgh', 'Vermillion', 'Vigo', 'Wabash', 'Warren', 'Warrick', 'Washington',
+                                'Wayne', 'Wells', 'White', 'Whitley'))
+
+    elif state == 'IA':
+        county = st.sidebar.selectbox('Select your county', ('Adair', 'Adams', 'Allamakee', 'Appanoose', 'Audubon', 'Benton',
+                                'Black Hawk', 'Boone', 'Bremer', 'Buchanan', 'Buena Vista', 'Butler', 'Calhoun',
+                                'Carroll', 'Cass', 'Cedar', 'Cerro Gordo', 'Cherokee', 'Chickasaw', 'Clarke', 'Clay',
+                                'Clayton', 'Clinton', 'Crawford', 'Dallas', 'Davis', 'Decatur', 'Delaware', 'Des Moines',
+                                'Dickinson', 'Dubuque', 'Emmet', 'Fayette', 'Floyd', 'Franklin', 'Fremont', 'Greene', 'Grundy',
+                                'Guthrie', 'Hamilton', 'Hancock', 'Hardin', 'Harrison', 'Henry', 'Howard', 'Humboldt', 'Ida',
+                                'Iowa', 'Jackson', 'Jasper', 'Jefferson', 'Johnson', 'Jones', 'Keokuk', 'Kossuth', 'Lee', 'Linn',
+                                'Louisa', 'Lucas', 'Lyon', 'Madison', 'Mahaska', 'Marion', 'Marshall', 'Mills', 'Mitchell', 
+                                'Monona', 'Monroe', 'Montgomery', 'Muscatine', "O'Brien", 'Osceola', 'Page', 'Palo Alto',
+                                'Plymouth', 'Pocahontas', 'Polk', 'Pottawattamie', 'Poweshiek', 'Ringgold', 'Sac', 'Scott',
+                                'Shelby', 'Sioux', 'Story', 'Tama', 'Taylor', 'Union', 'Van Buren', 'Wapello', 'Warren',
+                                'Washington', 'Wayne', 'Webster', 'Winnebago', 'Winneshiek', 'Woodbury', 'Worth', 'Wright'))
+
+    elif state == 'KS':
+        county = st.sidebar.selectbox('Select your county', ('Allen', 'Anderson', 'Atchison', 'Barber', 'Barton', 'Bourbon', 'Brown',
+                                'Butler', 'Chase', 'Chautauqua', 'Cherokee', 'Cheyenne', 'Clark', 'Clay', 'Cloud', 'Coffey',
+                                'Comanche', 'Cowley', 'Crawford', 'Decatur', 'Dickinson', 'Doniphan', 'Douglas', 'Edwards', 'Elk', 
+                                'Ellis', 'Ellsworth', 'Finney', 'Ford', 'Franklin', 'Geary', 'Gove', 'Graham', 'Grant', 'Gray', 
+                                'Greeley', 'Greenwood', 'Hamilton', 'Harper', 'Harvey', 'Haskell', 'Hodgeman', 'Jackson', 'Jefferson',
+                                'Jewell', 'Johnson', 'Kearny', 'Kingman', 'Kiowa', 'Labette', 'Lane', 'Leavenworth', 'Lincoln', 'Linn', 
+                                'Logan', 'Lyon', 'Marion', 'Marshall', 'McPherson', 'Meade', 'Miami', 'Mitchell', 'Montgomery', 'Morris', 
+                                'Morton', 'Nemaha', 'Neosho', 'Ness', 'Norton', 'Osage', 'Osborne', 'Ottawa', 'Pawnee', 'Phillips', 
+                                'Pottawatomie', 'Pratt', 'Rawlins', 'Reno', 'Republic', 'Rice', 'Riley', 'Rooks', 'Rush', 'Russell', 
+                                'Saline', 'Scott', 'Sedgwick', 'Seward', 'Shawnee', 'Sheridan', 'Sherman', 'Smith', 'Stafford', 'Stanton', 
+                                'Stevens', 'Sumner', 'Thomas', 'Trego', 'Wabaunsee', 'Wallace', 'Washington', 'Wichita', 'Wilson', 
+                                'Woodson', 'Wyandotte'))
+
+    elif state == 'KY':
+        county = st.sidebar.selectbox('Select your county', ('Adair', 'Allen', 'Anderson', 'Ballard', 'Barren', 'Bath', 'Bell', 'Boone', 
+                                'Bourbon', 'Boyd', 'Boyle', 'Bracken', 'Breathitt', 'Breckinridge', 'Bullitt', 'Butler', 'Caldwell', 
+                                'Calloway', 'Campbell', 'Carlisle', 'Carroll', 'Carter', 'Casey','Christian', 'Clark', 'Clay', 'Clinton', 
+                                'Crittenden', 'Cumberland', 'Daviess', 'Edmonson', 'Elliott', 'Estill', 'Fayette', 'Fleming', 'Floyd', 
+                                'Franklin', 'Fulton', 'Gallatin', 'Garrard', 'Grant', 'Graves', 'Grayson', 'Green', 'Greenup', 'Hancock', 
+                                'Hardin', 'Harlan', 'Harrison', 'Hart', 'Henderson', 'Henry', 'Hickman', 'Hopkins', 'Jackson', 'Jefferson', 
+                                'Jessamine', 'Johnson', 'Kenton', 'Knott', 'Knox', 'Larue', 'Laurel', 'Lawrence', 'Lee', 'Leslie', 
+                                'Letcher', 'Lewis', 'Lincoln', 'Livingston', 'Logan', 'Lyon', 'Madison', 'Magoffin', 'Marion', 'Marshall', 
+                                'Martin', 'Mason', 'McCracken', 'McCreary', 'McLean', 'Meade', 'Menifee', 'Mercer', 'Metcalfe', 'Monroe',
+                                'Montgomery', 'Morgan', 'Muhlenberg', 'Nelson', 'Nicholas', 'Ohio', 'Oldham', 'Owen', 'Owsley', 'Pendleton', 
+                                'Perry', 'Pike', 'Powell', 'Pulaski', 'Robertson', 'Rockcastle', 'Rowan', 'Russell', 'Scott', 'Shelby', 
+                                'Simpson', 'Spencer', 'Taylor', 'Todd', 'Trigg', 'Trimble', 'Union', 'Warren', 'Washington', 'Wayne', 
+                                'Webster', 'Whitley', 'Wolfe', 'Woodford'))
+
+    elif state == 'LA':
+        county = st.sidebar.selectbox('Select your county', ('Acadia', 'Allen', 'Ascension', 'Assumption', 'Avoyelles', 'Beauregard', 'Bienville', 
+                                'Bossier', 'Caddo', 'Calcasieu', 'Caldwell', 'Cameron', 'Catahoula', 'Claiborne', 'Concordia', 'De Soto', 
+                                'East Baton Rouge', 'East Carroll', 'East Feliciana', 'Evangeline', 'Franklin', 'Grant', 'Iberia', 
+                                'Iberville', 'Jackson', 'Jefferson', 'Jefferson Davis', 'La Salle', 'Lafayette', 'Lafourche', 'Lincoln', 
+                                'Livingston', 'Madison', 'Morehouse', 'Natchitoches', 'Orleans', 'Ouachita', 'Plaquemines', 'Pointe Coupee', 
+                                'Rapides', 'Red River', 'Richland', 'Sabine', 'St. Bernard', 'St. Charles', 'St. Helena', 'St. James',
+                                'St. John The Baptist', 'St. Landry', 'St. Martin', 'St. Mary', 'St. Tammany', 'Tangipahoa', 'Tensas', 
+                                'Terrebonne', 'Union', 'Vermilion', 'Vernon', 'Washington', 'Webster', 'West Baton Rouge', 'West Carroll', 
+                                'West Feliciana', 'Winn'))
+
+    elif state == 'ME':
+        county = st.sidebar.selectbox('Select your county', ('Androscoggin', 'Aroostook', 'Cumberland', 'Franklin', 'Hancock', 'Kennebec', 
+                                'Knox', 'Lincoln', 'Oxford', 'Penobscot', 'Piscataquis', 'Sagadahoc', 'Somerset', 'Waldo', 'Washington',
+                                'York'))
+
+    elif state == 'MD':
+        county = st.sidebar.selectbox('Select your county', ('Allegany', 'Anne Arundel', 'Baltimore', 'Baltimore City', 'Calvert', 'Caroline', 
+                                'Carroll', 'Cecil', 'Charles', 'Dorchester', 'Frederick', 'Garrett', 'Harford', 'Howard', 'Kent', 
+                                'Montgomery', 'Prince Georges', "Queen Anne's", 'Somerset', 'St. Marys', 'Talbot', 'Washington', 
+                                'Wicomico', 'Worcester'))
+
+    elif state == 'MA':
+        county = st.sidebar.selectbox('Select your county', ('Barnstable', 'Berkshire', 'Bristol', 'Dukes', 'Essex', 'Franklin', 'Hampden', 
+                                'Hampshire', 'Middlesex', 'Nantucket', 'Norfolk', 'Plymouth', 'Suffolk', 'Worcester'))
+
+    elif state == 'MI':
+        county = st.sidebar.selectbox('Select your county', ('Alcona', 'Alger', 'Allegan', 'Alpena', 'Antrim', 'Arenac', 'Baraga', 'Barry', 
+                                'Bay', 'Benzie', 'Berrien', 'Branch', 'Calhoun', 'Cass', 'Charlevoix', 'Cheboygan', 'Chippewa', 'Clare', 
+                                'Clinton', 'Crawford', 'Delta', 'Dickinson', 'Eaton', 'Emmet', 'Genesee', 'Gladwin', 'Gogebic', 
+                                'Grand Traverse', 'Gratiot', 'Hillsdale', 'Houghton', 'Huron', 'Ingham', 'Ionia', 'Iosco', 'Iron', 
+                                'Isabella', 'Jackson', 'Kalamazoo', 'Kalkaska', 'Kent', 'Keweenaw', 'Lake', 'Lapeer', 'Leelanau', 
+                                'Lenawee', 'Livingston', 'Luce', 'Mackinac', 'Macomb', 'Manistee', 'Marquette', 'Mason', 'Mecosta', 
+                                'Menominee', 'Midland', 'Missaukee', 'Monroe', 'Montcalm', 'Montmorency', 'Muskegon', 'Newaygo', 'Oakland', 
+                                'Oceana', 'Ogemaw', 'Ontonagon', 'Osceola', 'Oscoda', 'Otsego', 'Ottawa', 'Presque Isle', 'Roscommon', 
+                                'Saginaw', 'Sanilac', 'Schoolcraft', 'Shiawassee', 'St. Clair', 'St. Joseph', 'Tuscola', 'Van Buren', 
+                                'Washtenaw', 'Wayne', 'Wexford'))
+
+    elif state == 'MN':
+        county = st.sidebar.selectbox('Select your county', ('Aitkin', 'Anoka', 'Becker', 'Beltrami', 'Benton', 'Big Stone', 'Blue Earth', 'Brown', 
+                                'Carlton', 'Carver', 'Cass', 'Chippewa', 'Chisago', 'Clay', 'Clearwater', 'Cook', 'Cottonwood', 'Crow Wing', 
+                                'Dakota', 'Dodge', 'Douglas', 'Faribault', 'Fillmore', 'Freeborn', 'Goodhue', 'Grant', 'Hennepin', 'Houston', 
+                                'Hubbard', 'Isanti', 'Itasca', 'Jackson', 'Kanabec', 'Kandiyohi', 'Kittson', 'Koochiching', 'Lac qui Parle', 
+                                'Lake', 'Lake of the Woods', 'Le Sueur', 'Lincoln', 'Lyon', 'Mahnomen', 'Marshall', 'Martin', 'McLeod', 
+                                'Meeker', 'Mille Lacs', 'Morrison', 'Mower', 'Murray', 'Nicollet', 'Nobles', 'Norman', 'Olmsted', 
+                                'Otter Tail', 'Pennington', 'Pine', 'Pipestone', 'Polk', 'Pope', 'Ramsey', 'Red Lake', 'Redwood', 
+                                'Renville', 'Rice', 'Rock', 'Roseau', 'Scott', 'Sherburne', 'Sibley', 'St. Louis', 'Stearns', 'Steele', 
+                                'Stevens', 'Swift', 'Todd', 'Traverse', 'Wabasha', 'Wadena', 'Waseca', 'Washington', 'Watonwan', 'Wilkin', 
+                                'Winona', 'Wright', 'Yellow Medicine'))
+
+    elif state == 'MS':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Alcorn', 'Amite', 'Attala', 'Benton', 'Bolivar', 'Calhoun', 'Carroll', 
+                                'Chickasaw', 'Choctaw', 'Claiborne', 'Clarke', 'Clay', 'Coahoma', 'Copiah', 'Covington', 'DeSoto', 
+                                'Forrest', 'Franklin', 'George', 'Greene', 'Grenada', 'Hancock', 'Harrison', 'Hinds', 'Holmes', 'Humphreys', 
+                                'Issaquena', 'Itawamba', 'Jackson', 'Jasper', 'Jefferson', 'Jefferson Davis', 'Jones', 'Kemper', 'Lafayette', 
+                                'Lamar', 'Lauderdale', 'Lawrence', 'Leake', 'Lee', 'Leflore', 'Lincoln', 'Lowndes', 'Madison', 'Marion', 
+                                'Marshall', 'Monroe', 'Montgomery', 'Neshoba', 'Newton', 'Noxubee', 'Oktibbeha', 'Panola', 'Pearl River', 
+                                'Perry', 'Pike', 'Pontotoc', 'Prentiss', 'Quitman', 'Rankin', 'Scott', 'Sharkey', 'Simpson', 'Smith', 
+                                'Stone', 'Sunflower', 'Tallahatchie', 'Tate', 'Tippah', 'Tishomingo', 'Tunica', 'Union', 'Walthall', 
+                                'Warren', 'Washington', 'Wayne', 'Webster', 'Wilkinson', 'Winston', 'Yalobusha', 'Yazoo'))
+
+    elif state == 'MO':
+        county = st.sidebar.selectbox('Select your county', ('Adair', 'Andrew', 'Atchison', 'Audrain', 'Barry', 'Barton', 
+                                'Bates', 'Benton', 'Bollinger', 'Boone', 'Buchanan', 'Butler', 'Caldwell', 'Callaway', 
+                                'Camden', 'Cape Girardeau', 'Carroll', 'Carter', 'Cass', 'Cedar', 'Chariton', 'Christian', 
+                                'Clark', 'Clay', 'Clinton', 'Cole', 'Cooper', 'Crawford', 'Dade', 'Dallas', 'Daviess', 'DeKalb', 
+                                'Dent', 'Douglas', 'Dunklin', 'Franklin', 'Gasconade', 'Gentry', 'Greene', 'Grundy', 'Harrison', 
+                                'Henry', 'Hickory', 'Holt', 'Howard', 'Howell', 'Iron', 'Jackson', 'Jasper', 'Jefferson', 'Johnson', 
+                                'Knox', 'Laclede', 'Lafayette', 'Lawrence', 'Lewis', 'Lincoln', 'Linn', 'Livingston', 'Macon', 
+                                'Madison', 'Maries', 'Marion', 'McDonald', 'Mercer', 'Miller', 'Mississippi', 'Moniteau', 'Monroe', 
+                                'Montgomery', 'Morgan', 'New Madrid', 'Newton', 'Nodaway', 'Oregon', 'Osage', 'Ozark', 'Pemiscot', 
+                                'Perry', 'Pettis', 'Phelps', 'Pike', 'Platte', 'Polk', 'Pulaski', 'Putnam', 'Ralls', 'Randolph', 'Ray', 
+                                'Reynolds', 'Ripley', 'Saline', 'Schuyler', 'Scotland', 'Scott', 'Shannon', 'Shelby', 'St. Charles', 
+                                'St. Clair', 'St. Francois', 'St. Louis', 'St. Louis City', 'Ste. Genevieve', 'Stoddard', 'Stone', 
+                                'Sullivan', 'Taney', 'Texas', 'Vernon', 'Warren', 'Washington', 'Wayne', 'Webster', 'Worth', 'Wright'))
+
+    elif state == 'MT':
+        county = st.sidebar.selectbox('Select your county', ('Beaverhead', 'Big Horn', 'Blaine', 'Broadwater', 'Carbon', 'Carter', 'Cascade', 
+                                'Chouteau', 'Custer', 'Daniels', 'Dawson', 'Deer Lodge', 'Fallon', 'Fergus', 'Flathead', 'Gallatin', 
+                                'Garfield', 'Glacier', 'Golden Valley', 'Granite', 'Hill', 'Jefferson', 'Judith Basin', 'Lake', 
+                                'Lewis and Clark', 'Liberty', 'Lincoln', 'Madison', 'McCone', 'Meagher', 'Mineral', 'Missoula', 
+                                'Musselshell', 'Park', 'Petroleum', 'Phillips', 'Pondera', 'Powder River', 'Powell', 'Prairie', 
+                                'Ravalli', 'Richland', 'Roosevelt', 'Rosebud', 'Sanders', 'Sheridan', 'Silver Bow', 'Stillwater', 
+                                'Sweet Grass', 'Teton', 'Toole', 'Treasure', 'Valley', 'Wheatland', 'Wibaux', 'Yellowstone'))
+
+    elif state == 'NE':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Antelope', 'Arthur', 'Banner', 'Blaine', 'Boone', 'Box Butte', 'Boyd', 
+                                'Brown', 'Buffalo', 'Burt', 'Butler', 'Cass', 'Cedar', 'Chase', 'Cherry', 'Cheyenne', 'Clay', 'Colfax', 
+                                'Cuming', 'Custer', 'Dakota', 'Dawes', 'Dawson', 'Deuel', 'Dixon', 'Dodge', 'Douglas', 'Dundy', 'Fillmore', 
+                                'Franklin', 'Frontier', 'Furnas', 'Gage', 'Garden', 'Garfield', 'Gosper', 'Grant', 'Greeley', 'Hall', 
+                                'Hamilton', 'Harlan', 'Hayes', 'Hitchcock', 'Holt', 'Hooker', 'Howard', 'Jefferson', 'Johnson', 'Kearney', 
+                                'Keith', 'Keya Paha', 'Kimball', 'Knox', 'Lancaster', 'Lincoln', 'Logan', 'Loup', 'Madison', 'McPherson', 
+                                'Merrick', 'Morrill', 'Nance', 'Nemaha', 'Nuckolls', 'Otoe', 'Pawnee', 'Perkins', 'Phelps', 'Pierce',
+                                'Platte', 'Polk', 'Red Willow', 'Richardson', 'Rock', 'Saline', 'Sarpy', 'Saunders', 'Scotts Bluff', 
+                                'Seward', 'Sheridan', 'Sherman', 'Sioux', 'Stanton', 'Thayer', 'Thomas', 'Thurston', 'Valley', 
+                                'Washington', 'Wayne', 'Webster', 'Wheeler', 'York'))
+
+    elif state == 'NV':
+        county = st.sidebar.selectbox('Select your county', ('Carson City', 'Churchill', 'Clark', 'Douglas', 'Elko', 'Esmeralda', 'Eureka', 
+                                'Humboldt', 'Lander', 'Lincoln', 'Lyon', 'Mineral', 'Nye', 'Pershing', 'Storey', 'Washoe', 'White Pine'))
+
+    elif state == 'NH':
+        county = st.sidebar.selectbox('Select your county', ('Belknap', 'Carroll', 'Cheshire', 'Coos', 'Grafton', 'Hillsborough', 'Merrimack', 
+                                'Rockingham', 'Strafford', 'Sullivan'))
+
+    elif state == 'NJ':
+        county = st.sidebar.selectbox('Select your county', ('Atlantic', 'Bergen', 'Burlington', 'Camden', 'Cape May', 'Cumberland', 'Essex', 
+                                'Gloucester', 'Hudson', 'Hunterdon', 'Mercer', 'Middlesex', 'Monmouth', 'Morris', 'Ocean', 'Passaic', 
+                                'Salem', 'Somerset', 'Sussex', 'Union', 'Warren'))
+
+    elif state == 'NM':
+        county = st.selectbox('Select your county', ('Bernalillo', 'Catron', 'Chaves', 'Cibola', 'Colfax', 'Curry', 'De Baca', 'Dona Ana', 
+                                'Eddy', 'Grant', 'Guadalupe', 'Harding', 'Hidalgo', 'Lea', 'Lincoln', 'Los Alamos', 'Luna', 'McKinley', 
+                                'Mora', 'Otero', 'Quay', 'Rio Arriba', 'Roosevelt', 'San Juan', 'San Miguel', 'Sandoval', 'Santa Fe', 
+                                'Sierra', 'Socorro', 'Taos', 'Torrance', 'Union', 'Valencia'))
+
+    elif state == 'NY':
+        county = st.sidebar.selectbox('Select your county', ('Albany', 'Allegany', 'Bronx', 'Broome', 'Cattaraugus', 'Cayuga', 'Chautauqua', 
+                                'Chemung', 'Chenango', 'Clinton', 'Columbia', 'Cortland', 'Delaware', 'Dutchess', 'Erie', 'Essex', 
+                                'Franklin', 'Fulton', 'Genesee', 'Greene', 'Hamilton', 'Herkimer', 'Jefferson', 'Kings', 'Lewis', 
+                                'Livingston', 'Madison', 'Monroe', 'Montgomery', 'Nassau', 'New York', 'New York (Manhattan)', 
+                                'Niagara', 'Oneida', 'Onondaga', 'Ontario', 'Orange', 'Orleans', 'Oswego', 'Otsego', 'Putnam', 'Queens', 
+                                'Rensselaer', 'Richmond', 'Rockland', 'Saratoga', 'Schenectady', 'Schoharie', 'Schuyler', 'Seneca', 
+                                'St. Lawrence', 'Steuben', 'Suffolk', 'Sullivan', 'Tioga', 'Tompkins', 'Ulster', 'Warren', 'Washington', 
+                                'Wayne', 'Westchester', 'Westchester', 'Wyoming', 'Yates'))
+
+    elif state == 'NC':
+        county = st.sidebar.selectbox('Select your county', ('Alamance', 'Alexander', 'Alleghany', 'Anson', 'Ashe', 'Avery', 'Beaufort', 'Bertie', 
+                                'Bladen', 'Brunswick', 'Buncombe', 'Burke', 'Cabarrus', 'Caldwell', 'Camden', 'Carteret', 'Caswell', 
+                                'Catawba', 'Chatham', 'Cherokee', 'Chowan', 'Clay', 'Cleveland', 'Columbus', 'Craven', 'Cumberland', 
+                                'Currituck', 'Dare', 'Davidson', 'Davie', 'Duplin', 'Durham', 'Edgecombe', 'Forsyth', 'Franklin', 'Gaston', 
+                                'Gates', 'Graham', 'Granville', 'Greene', 'Guilford', 'Halifax', 'Harnett', 'Haywood', 'Henderson', 
+                                'Hertford', 'Hoke', 'Hyde', 'Iredell', 'Jackson', 'Johnston', 'Jones', 'Lee', 'Lenoir', 'Lincoln', 'Macon', 
+                                'Madison', 'Martin', 'McDowell', 'Mecklenburg', 'Mitchell', 'Montgomery', 'Moore', 'Nash', 'New Hanover', 
+                                'Northampton', 'Onslow', 'Orange', 'Pamlico', 'Pasquotank', 'Pender', 'Perquimans', 'Person', 'Pitt', 
+                                'Polk', 'Randolph', 'Richmond', 'Robeson', 'Rockingham', 'Rowan', 'Rutherford', 'Sampson', 'Scotland', 
+                                'Stanly', 'Stokes', 'Surry', 'Swain', 'Transylvania', 'Tyrrell', 'Union', 'Vance', 'Wake', 'Warren', 
+                                'Washington', 'Watauga', 'Wayne', 'Wilkes', 'Wilson', 'Yadkin', 'Yancey'))
+
+    elif state == 'ND':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Barnes', 'Benson', 'Billings', 'Bottineau', 'Bowman', 'Burke', 'Burleigh', 
+                                'Cass', 'Cavalier', 'Dickey', 'Divide', 'Dunn', 'Eddy', 'Emmons', 'Foster', 'Golden Valley', 'Grand Forks', 
+                                'Grant', 'Griggs', 'Hettinger', 'Kidder', 'LaMoure', 'Logan', 'McHenry', 'McIntosh', 'McKenzie', 'McLean', 
+                                'Mercer', 'Morton', 'Mountrail', 'Nelson', 'Oliver', 'Pembina', 'Pierce', 'Ramsey', 'Ransom', 'Renville', 
+                                'Richland', 'Rolette', 'Sargent', 'Sheridan', 'Sioux', 'Slope', 'Stark', 'Steele', 'Stutsman', 'Towner', 
+                                'Traill', 'Walsh', 'Ward', 'Wells', 'Williams'))
+
+    elif state == 'OH':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Allen', 'Ashland', 'Ashtabula', 'Athens', 'Auglaize', 'Belmont', 'Brown', 
+                                'Butler', 'Carroll', 'Champaign', 'Clark', 'Clermont', 'Clinton', 'Columbiana', 'Coshocton', 'Crawford', 
+                                'Cuyahoga', 'Darke', 'Defiance', 'Delaware', 'Erie', 'Fairfield', 'Fayette', 'Franklin', 'Fulton', 'Gallia', 
+                                'Geauga', 'Greene', 'Guernsey', 'Hamilton', 'Hancock', 'Hardin', 'Harrison', 'Henry', 'Highland', 'Hocking', 
+                                'Holmes', 'Huron', 'Jackson', 'Jefferson', 'Knox', 'Lake', 'Lawrence', 'Licking', 'Logan', 'Lorain', 
+                                'Lucas', 'Madison', 'Mahoning', 'Marion', 'Medina', 'Meigs', 'Mercer', 'Miami', 'Monroe', 'Montgomery', 
+                                'Morgan', 'Morrow', 'Muskingum', 'Noble', 'Ottawa', 'Paulding', 'Perry', 'Pickaway', 'Pike', 'Portage', 
+                                'Preble', 'Putnam', 'Richland', 'Ross', 'Sandusky', 'Scioto', 'Seneca', 'Shelby', 'Stark', 'Summit', 
+                                'Trumbull', 'Tuscarawas', 'Union', 'Van Wert', 'Vinton', 'Warren', 'Washington', 'Wayne', 'Williams', 
+                                'Wood', 'Wyandot'))
+
+    elif state == 'OK':
+        county = st.sidebar.selectbox('Select your county', ('Adair', 'Alfalfa', 'Atoka', 'Beaver', 'Beckham', 'Blaine', 'Bryan', 'Caddo',
+                                'Canadian', 'Carter', 'Cherokee', 'Choctaw', 'Cimarron', 'Cleveland', 'Coal', 'Comanche', 'Cotton',
+                                'Craig', 'Creek', 'Custer', 'Delaware', 'Dewey', 'Ellis', 'Garfield', 'Garvin', 'Grady', 'Grant',
+                                'Greer', 'Harmon', 'Harper', 'Haskell', 'Hughes', 'Jackson', 'Jefferson', 'Johnston', 'Kay', 'Kingfisher', 
+                                'Kiowa', 'Latimer', 'Le Flore', 'Lincoln', 'Logan', 'Love', 'Major', 'Marshall', 'Mayes', 'McClain', 
+                                'McCurtain', 'McIntosh', 'Murray', 'Muskogee', 'Noble', 'Nowata', 'Okfuskee', 'Oklahoma', 'Okmulgee', 
+                                'Osage', 'Ottawa', 'Pawnee', 'Payne', 'Pittsburg', 'Pontotoc', 'Pottawatomie', 'Pushmataha', 'Roger Mills', 
+                                'Rogers', 'Seminole', 'Sequoyah', 'Stephens', 'Texas', 'Tillman', 'Tulsa', 'Wagoner', 'Washington', 
+                                'Washita', 'Woods', 'Woodward'))
+
+    elif state == 'OR':
+        county = st.sidebar.selectbox('Select your county', ('Baker', 'Benton', 'Clackamas', 'Clatsop', 'Columbia', 'Coos', 'Crook',
+                                'Curry', 'Deschutes', 'Douglas', 'Gilliam', 'Grant', 'Harney', 'Hood River', 'Jackson',
+                                'Jefferson', 'Josephine', 'Klamath', 'Lake', 'Lane', 'Lincoln', 'Linn', 'Malheur', 'Marion',
+                                'Morrow', 'Multnomah', 'Polk', 'Sherman', 'Tillamook', 'Umatilla', 'Union', 'Wallowa', 'Wasco', 
+                                'Washington', 'Wheeler', 'Yamhill'))
+
+    elif state == 'PA':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Allegheny', 'Armstrong', 'Beaver', 'Bedford', 'Berks', 'Blair',
+                                'Bradford', 'Bucks', 'Butler', 'Cambria', 'Cameron', 'Carbon', 'Centre', 'Chester', 'Clarion',
+                                'Clearfield', 'Clinton', 'Columbia', 'Crawford', 'Cumberland', 'Dauphin', 'Delaware', 'Elk', 'Erie', 
+                                'Fayette', 'Forest', 'Franklin', 'Fulton', 'Greene', 'Huntingdon', 'Indiana', 'Jefferson', 'Juniata', 
+                                'Lackawanna', 'Lancaster', 'Lawrence', 'Lebanon', 'Lehigh', 'Luzerne', 'Lycoming', 'McKean', 'Mercer',
+                                'Mifflin', 'Monroe', 'Montgomery', 'Montour', 'Northampton', 'Northumberland', 'Perry',
+                                'Philadelphia', 'Pike', 'Potter', 'Schuylkill', 'Snyder', 'Somerset', 'Sullivan', 'Susquehanna',
+                                'Tioga', 'Union', 'Venango', 'Warren', 'Washington', 'Wayne', 'Westmoreland', 'Wyoming', 'York'))
+
+    elif state == 'RI':
+        county = st.sidebar.selectbox('Select your county', ('Bristol', 'Kent', 'Newport', 'Providence', 'Washington'))
+
+    elif state == 'SC':
+        county = st.sidebar.selectbox('Select your county', ('Abbeville', 'Aiken', 'Allendale', 'Anderson', 'Bamberg',
+                                'Barnwell', 'Beaufort', 'Beaufort', 'Berkeley', 'Calhoun', 'Charleston', 
+                                'Cherokee', 'Chester', 'Chesterfield', 'Clarendon', 'Colleton', 'Darlington', 
+                                'Dillon', 'Dorchester', 'Edgefield', 'Fairfield', 'Florence', 'Georgetown',
+                                'Greenville', 'Greenwood', 'Hampton', 'Horry', 'Jasper', 'Kershaw', 'Lancaster',
+                                'Laurens', 'Lee', 'Lexington', 'Marion', 'Marlboro', 'McCormick', 'Newberry',
+                                'Oconee', 'Orangeburg', 'Pickens', 'Richland', 'Saluda', 'Spartanburg', 'Sumter',
+                                'Union', 'Williamsburg', 'York'))
+
+    elif state == 'SD':
+        county = st.sidebar.selectbox('Select your county', ('Aurora', 'Beadle', 'Bennett', 'Bon Homme', 'Brookings', 'Brown',
+                                'Brule', 'Buffalo', 'Butte', 'Campbell', 'Charles Mix', 'Clark', 'Clay', 'Codington',
+                                'Corson', 'Custer', 'Davison', 'Day', 'Deuel', 'Dewey', 'Douglas', 'Edmunds',
+                                'Fall River', 'Faulk', 'Grant', 'Gregory', 'Haakon', 'Hamlin', 'Hand', 'Hanson',
+                                'Harding', 'Hughes', 'Hutchinson', 'Hyde', 'Jackson', 'Jerauld', 'Jones', 'Kingsbury',
+                                'Lake', 'Lawrence', 'Lincoln', 'Lyman', 'Marshall', 'McCook', 'McPherson', 'Meade',
+                                'Mellette', 'Miner', 'Minnehaha', 'Moody', 'Oglala Lakota', 'Pennington', 'Perkins',
+                                'Potter', 'Roberts', 'Sanborn', 'Spink', 'Stanley', 'Sully', 'Todd', 'Tripp', 'Turner',
+                                'Union', 'Walworth', 'Yankton', 'Ziebach'))
+
+    elif state == 'TN':
+        county = st.sidebar.selectbox('Select your county', ('Anderson', 'Bedford', 'Benton', 'Bledsoe', 'Blount', 'Bradley', 
+                                'Campbell', 'Cannon', 'Carroll', 'Carter', 'Cheatham', 'Chester', 'Claiborne', 'Clay',
+                                'Cocke', 'Coffee', 'Crockett', 'Cumberland', 'Davidson', 'De Kalb', 'Decatur', 'Dickson',
+                                'Dyer', 'Fayette', 'Fentress', 'Franklin', 'Gibson', 'Giles', 'Grainger', 'Greene', 'Grundy',
+                                'Hamblen', 'Hamilton', 'Hancock', 'Hardeman', 'Hardin', 'Hawkins', 'Haywood', 'Henderson',
+                                'Henry', 'Hickman', 'Houston', 'Humphreys', 'Jackson', 'Jefferson', 'Johnson', 'Knox', 'Lake',
+                                'Lauderdale', 'Lawrence', 'Lewis', 'Lincoln', 'Loudon', 'Macon', 'Madison', 'Marion', 'Marshall',
+                                'Maury', 'McMinn', 'McNairy', 'Meigs', 'Monroe', 'Montgomery', 'Moore', 'Morgan', 'Obion',
+                                'Overton', 'Perry', 'Pickett', 'Polk', 'Putnam', 'Rhea', 'Roane', 'Robertson', 'Rutherford',
+                                'Scott', 'Sequatchie', 'Sevier', 'Shelby', 'Smith', 'Stewart', 'Sullivan', 'Sumner', 'Tipton',
+                                'Trousdale', 'Unicoi', 'Union', 'Van Buren', 'Warren', 'Washington', 'Wayne', 'Weakley',
+                                'White', 'Williamson', 'Wilson'))
+
+    elif state == 'TX':
+        county = st.sidebar.selectbox('Select your county', ('Anderson', 'Andrews', 'Angelina', 'Aransas', 'Archer', 'Armstrong',
+                                'Atascosa', 'Austin', 'Bailey', 'Bandera', 'Bastrop', 'Baylor', 'Bee', 'Bell', 'Bexar',
+                                'Blanco', 'Borden', 'Bosque', 'Bowie', 'Brazoria', 'Brazos', 'Brewster', 'Briscoe',
+                                'Brooks', 'Brown', 'Burleson', 'Burnet', 'Caldwell', 'Calhoun', 'Callahan', 'Cameron', 
+                                'Camp', 'Carson', 'Cass', 'Castro', 'Chambers', 'Cherokee', 'Childress', 'Clay', 'Cochran', 
+                                'Coke', 'Coleman', 'Collin', 'Collingsworth', 'Colorado', 'Comal', 'Comanche', 'Concho', 
+                                'Cooke', 'Coryell', 'Cottle', 'Crane', 'Crockett', 'Crosby', 'Culberson', 'Dallam', 'Dallas', 
+                                'Dawson', 'DeWitt', 'Deaf Smith', 'Delta', 'Denton', 'Dickens', 'Dimmit', 'Donley', 'Duval', 
+                                'Eastland', 'Ector', 'Edwards', 'El Paso', 'Ellis', 'Erath', 'Falls', 'Fannin', 'Fayette',
+                                'Fisher', 'Floyd', 'Foard', 'Fort Bend', 'Franklin', 'Freestone', 'Frio', 'Gaines', 'Galveston',
+                                'Garza', 'Gillespie', 'Glasscock', 'Goliad', 'Gonzales', 'Gray', 'Grayson', 'Gregg', 'Grimes',
+                                'Guadalupe', 'Hale', 'Hall', 'Hamilton', 'Hansford', 'Hardeman', 'Hardin', 'Harris', 'Harrison',
+                                'Hartley', 'Haskell', 'Hays', 'Hemphill', 'Henderson', 'Hidalgo', 'Hill', 'Hockley', 'Hood',
+                                'Hopkins', 'Houston', 'Howard', 'Hudspeth', 'Hunt', 'Hutchinson', 'Irion', 'Jack', 'Jackson',
+                                'Jasper', 'Jeff Davis', 'Jefferson', 'Jim Hogg', 'Jim Wells', 'Johnson', 'Jones', 'Karnes',
+                                'Kaufman', 'Kendall', 'Kenedy', 'Kent', 'Kerr', 'Kimble', 'King', 'Kinney', 'Kleberg', 'Knox',
+                                'La Salle', 'Lamar', 'Lamb', 'Lampasas', 'Lavaca', 'Lee', 'Leon', 'Liberty', 'Limestone', 'Lipscomb', 
+                                'Live Oak', 'Llano', 'Loving', 'Lubbock', 'Lynn', 'Madison', 'Marion', 'Martin', 'Mason', 'Matagorda', 
+                                'Maverick', 'McCulloch', 'McLennan', 'McMullen', 'Medina', 'Menard', 'Midland', 'Milam', 'Mills',
+                                'Mitchell', 'Montague', 'Montgomery', 'Moore', 'Morris', 'Motley', 'Nacogdoches', 'Navarro', 'Newton',
+                                'Nolan', 'Nueces', 'Ochiltree', 'Oldham', 'Orange', 'Palo Pinto', 'Panola', 'Parker', 'Parmer',
+                                'Pecos', 'Polk', 'Potter', 'Presidio', 'Rains', 'Randall', 'Reagan', 'Real', 'Red River', 'Reeves', 
+                                'Refugio', 'Roberts', 'Robertson', 'Rockwall', 'Runnels', 'Rusk', 'Sabine', 'San Augustine',
+                                'San Jacinto', 'San Patricio', 'San Saba', 'Schleicher', 'Scurry', 'Shackelford', 'Shelby', 'Sherman', 
+                                'Smith', 'Somervell', 'Starr', 'Stephens', 'Sterling', 'Stonewall', 'Sutton', 'Swisher', 'Tarrant',
+                                'Taylor', 'Terrell', 'Terry', 'Throckmorton', 'Titus', 'Tom Green', 'Travis', 'Trinity', 'Tyler',
+                                'Upshur', 'Upton', 'Uvalde', 'Val Verde', 'Van Zandt', 'Victoria', 'Walker', 'Waller', 'Ward',
+                                'Washington', 'Webb', 'Wharton', 'Wheeler', 'Wichita', 'Wilbarger', 'Willacy', 'Williamson', 'Wilson', 
+                                'Winkler', 'Wise', 'Wood', 'Yoakum', 'Young', 'Zapata', 'Zavala'))
+
+    elif state == 'UT':
+        county = st.sidebar.selectbox('Select your county', ('Beaver', 'Box Elder', 'Cache', 'Carbon', 'Daggett',
+                                'Davis', 'Duchesne', 'Emery', 'Garfield', 'Grand', 'Iron', 'Juab',
+                                'Kane', 'Millard', 'Morgan', 'Piute', 'Rich', 'Salt Lake', 'San Juan',
+                                'Sanpete', 'Sevier', 'Summit', 'Tooele', 'Uintah', 'Utah', 'Wasatch',
+                                'Washington', 'Wayne', 'Weber'))
+
+    elif state == 'VT':
+        county = st.sidebar.selectbox('Select your county', ('Addison', 'Bennington', 'Caledonia', 'Chittenden', 
+                                'Essex', 'Franklin', 'Grand Isle', 'Lamoille', 'Orange', 'Orleans', 'Rutland',
+                                'Washington', 'Windham', 'Windsor'))
+
+    elif state == 'VA':
+        county = st.sidebar.selectbox('Select your county', ('Accomack', 'Albemarle', 'Alleghany', 'Amelia', 'Amherst', 
+                                'Appomattox', 'Arlington', 'Augusta', 'Bath', 'Bedford', 'Bland', 'Botetourt',
+                                'Brunswick', 'Buchanan', 'Buckingham', 'Campbell', 'Caroline', 'Carroll',
+                                'Charles City', 'Charlotte', 'Chesterfield', 'Clarke', 'Craig', 'Culpeper',
+                                'Cumberland', 'Dickenson', 'Dinwiddie', 'Essex', 'Fairfax', 'Fauquier', 'Floyd',
+                                'Fluvanna', 'Franklin', 'Frederick', 'Giles', 'Gloucester', 'Goochland', 'Grayson',
+                                'Greene', 'Greensville', 'Halifax', 'Hanover', 'Henrico', 'Henry', 'Highland',
+                                'Isle of Wight', 'James City', 'King George', 'King William', 'King and Queen',
+                                'Lancaster', 'Lee', 'Loudoun', 'Louisa', 'Lunenburg', 'Madison', 'Mathews',
+                                'Mecklenburg', 'Middlesex', 'Montgomery', 'Nelson', 'New Kent', 'Northampton',
+                                'Northumberland', 'Nottoway', 'Orange', 'Page', 'Patrick', 'Pittsylvania',
+                                'Powhatan', 'Prince Edward', 'Prince George', 'Prince William', 'Pulaski',
+                                'Rappahannock', 'Richmond', 'Roanoke', 'Rockbridge', 'Rockingham', 'Russell',
+                                'Scott', 'Shenandoah', 'Smyth', 'Southampton', 'Spotsylvania', 'Stafford', 'Surry',
+                                'Sussex', 'Tazewell', 'Warren', 'Washington', 'Westmoreland', 'Wise', 'Wythe', 'York'))
+
+    elif state == 'WA':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Asotin', 'Benton', 'Chelan', 'Clallam',
+                                'Clark', 'Columbia', 'Cowlitz', 'Douglas', 'Ferry', 'Franklin', 'Garfield',
+                                'Grant', 'Grays Harbor', 'Island', 'Jefferson', 'King', 'Kitsap',
+                                'Kittitas', 'Klickitat', 'Lewis', 'Lincoln', 'Mason', 'Okanogan', 'Pacific',
+                                'Pend Oreille', 'Pierce', 'San Juan', 'Skagit', 'Skamania', 'Snohomish',
+                                'Spokane', 'Stevens', 'Thurston', 'Wahkiakum', 'Walla Walla', 'Whatcom',
+                                'Whitman', 'Yakima'
+        ))
+
+    elif state == 'WV':
+        county = st.sidebar.selectbox('Select your county', ('Barbour', 'Berkeley', 'Boone', 'Braxton', 'Brooke',
+                                'Cabell', 'Calhoun', 'Clay', 'Doddridge', 'Fayette', 'Gilmer', 'Grant',
+                                'Greenbrier', 'Hampshire', 'Hancock', 'Hardy', 'Harrison', 'Jackson',
+                                'Jefferson', 'Kanawha', 'Lewis', 'Lincoln', 'Logan', 'Marion', 'Marshall',
+                                'Mason', 'McDowell', 'Mercer', 'Mineral', 'Mingo', 'Monongalia', 'Monroe',
+                                'Morgan', 'Nicholas', 'Ohio', 'Pendleton', 'Pleasants', 'Pocahontas',
+                                'Preston', 'Putnam', 'Raleigh', 'Randolph', 'Ritchie', 'Roane', 'Summers',
+                                'Taylor', 'Tucker', 'Tyler', 'Upshur', 'Wayne', 'Webster', 'Wetzel', 'Wirt',
+                                'Wood', 'Wyoming'))
+
+    elif state == 'WI':
+        county = st.sidebar.selectbox('Select your county', ('Adams', 'Ashland', 'Barron', 'Bayfield', 'Brown',
+                                'Buffalo', 'Burnett', 'Calumet', 'Chippewa', 'Clark', 'Columbia', 'Crawford', 
+                                'Dane', 'Dodge', 'Door', 'Douglas', 'Dunn', 'Eau Claire', 'Florence', 
+                                'Fond du Lac', 'Forest', 'Grant', 'Green', 'Green Lake', 'Iowa', 'Iron',
+                                'Jackson', 'Jefferson', 'Juneau', 'Kenosha', 'Kewaunee', 'La Crosse',
+                                'Lafayette', 'Langlade', 'Lincoln', 'Manitowoc', 'Marathon', 'Marinette',
+                                'Marquette', 'Menominee', 'Milwaukee', 'Monroe', 'Oconto', 'Oneida', 'Outagamie',
+                                'Ozaukee', 'Pepin', 'Pierce', 'Polk', 'Portage', 'Price', 'Racine', 'Richland',
+                                'Rock', 'Rusk', 'Sauk', 'Sawyer', 'Shawano', 'Sheboygan', 'St. Croix', 'Taylor',
+                                'Trempealeau', 'Vernon', 'Vilas', 'Walworth', 'Washburn', 'Washington', 'Waukesha',
+                                'Waupaca', 'Waushara', 'Winnebago', 'Wood'))
+
+    elif state == 'WY':
+        county = st.sidebar.selectbox('Select your county', ('Albany', 'Big Horn', 'Campbell', 'Carbon', 'Converse', 'Crook',
+                                'Fremont', 'Goshen', 'Hot Springs', 'Johnson', 'Laramie', 'Lincoln', 'Natrona', 'Niobrara',
+                                'Park', 'Platte', 'Sheridan', 'Sublette', 'Sweetwater', 'Teton', 'Uinta', 'Washakie',
+                                'Weston'))
+    
+    select_status = st.sidebar.radio("Select a time series chart", ('Temperature Trends by County',
+                                                    'Drought Trends by County'))
+    
+    # Convert state and county name to fips code
+    df = pd.read_csv('../../data/clean-data/combined2.csv')
+    state_data = df[df['state'] == state]
+    fips = int(df[(df['state'] == state) & (df['countyname'] == county)]['fips'])
+    fips = str(fips)
+    fips = fips.zfill(5)
+
+    ## Time Series Citation: Bob Adams
+    # Set up data frame for monthly time series
+    mon = pd.read_csv('../../data/clean-data/Monthly_Temp_Drought_Combo.csv', dtype = {'FIPS':str})
+    mon.drop(columns = 'Unnamed: 0', inplace = True)
+    mon.rename(columns = {
+        'Month' : 'month',
+        'FIPS' : 'fips',
+        'Tmin_C' : 'min_temp',
+        'Tmax_C' : 'max_temp',
+        'Tmean_C' : 'mean_temp',
+        'Flag_T' : 'flag_pop_covered'
+        }, inplace = True)
+    mon['month'] = pd.to_datetime(mon['month'],format = ('%Y-%m'))
+    #cite :https://stackoverflow.com/a/339024 for rjust 
+    mon['fips'] = mon['fips'].str.rjust(5,'0')
+    # Convert Celsius to Farenheit to limit confusion within the U.S. Market
+    mon[['min_temp','max_temp','mean_temp']] *= (9/5)
+    mon[['min_temp','max_temp','mean_temp']] += 32 
+
+    # Set up data frame for yearly time series
+    year = pd.read_csv('../../data/clean-data/Temp_Drought_Combo.csv', dtype= {'FIPS' : str})
+    year.drop(columns = 'Unnamed: 0', inplace = True)
+    year['year'] = pd.to_datetime(year['year'].astype(str))
+    year['FIPS'] = year['FIPS'].str.rjust(5,'0') 
+
+    # Create county dictionary to enable human readable outputs
+    counties = pd.read_csv('../../data/raw-data/counties.csv', dtype = {'FIPS': str})
+    counties.drop(columns = 'Unnamed: 0', inplace = True)
+    counties['FIPS'] = counties['FIPS'].str.rjust(5,'0')
+    county_dict = dict(zip(counties['FIPS'], zip(counties['STATE'], counties['COUNTYNAME'], counties['LON'], counties['LAT'])))
+
+    # Local time series plotting functions
+    def plot_temp_trends_county(county_fips, min_year, county, state):    
+
+        # Filtered Monthly Summary View
+        county_month_view_df = mon[(mon['month'].dt.year >= min_year) & (mon['fips'] == county_fips)]
+        county_month_view_df.set_index('month', inplace = True)
+
+        # Annual Summary from Daily Data
+        county_year_view_df = year[(year['year'].dt.year >= min_year) & (year['FIPS'] == county_fips)]
+        county_year_view_df = county_year_view_df[['year','FIPS','Tmean_C']]
+        # Convert to Farenheit
+        county_year_view_df['Tmean_C'] *= (9/5)
+        county_year_view_df['Tmean_C'] += 32
+        county_year_view_df.rename(columns = {'Tmean_C' : 'Tmean_F'}, inplace = True)
+
+        county_year_view_df.set_index('year', inplace = True)
+        #cite: Time Series in Pandas Lesson
+    
+        # Plot
+        plt.figure(figsize = (12,8))
+        plt.plot(county_month_view_df['min_temp'], c = '#EED78D', label = 'Low Temp (F)')
+        plt.plot(county_month_view_df['max_temp'], c = '#C22B26',  label = 'High Temp (F)')
+        plt.plot(county_month_view_df['mean_temp'], c = '#FFB632',  label = 'Mean Temp (F)')
+        plt.plot(county_year_view_df['Tmean_F'], c = 'k', label = 'Annual Mean Temp (F)',)
+
+        plt.title(f"Temperature Trend for {county} County, {state}")
+        plt.yticks(fontsize = 12)
+        plt.xticks(fontsize = 12)
+        plt.ylabel('Average Monthly Temperature (F)', fontsize = 12)
+        plt.legend()
+        st.pyplot();   
+
+    def plot_drought_trends_county(county_fips, min_year, county, state):
+        # Filtered Monthly Summary View
+        county_month_view_df = mon[(mon['month'].dt.year >= min_year) & (mon['fips'] == county_fips)]
+        county_month_view_df.set_index('month', inplace = True)
+        county_month_view_df['extreme_plus'] = county_month_view_df[['exceptional_drought','extreme_drought']].max(axis = 1)
+        county_month_view_df['severe_plus'] = county_month_view_df[['exceptional_drought','extreme_drought','severe_drought']].max(axis = 1)
+        county_month_view_df['moderate_plus'] = county_month_view_df[['exceptional_drought','extreme_drought','severe_drought', 'moderate_drought']].max(axis = 1)
+
+        # Annual Summary from Daily Data
+        county_year_view_df = year[(year['year'].dt.year >= min_year) & (year['FIPS'] == county_fips)]
+        county_year_view_df = county_year_view_df[['year','FIPS','Tmean_C']]
+        # Convert to Fahrenheit
+        county_year_view_df['Tmean_C'] *= (9/5)
+        county_year_view_df['Tmean_C'] += 32
+        county_year_view_df.rename(columns = {'Tmean_C' : 'Tmean_F'}, inplace = True)
+
+        county_year_view_df.set_index('year', inplace = True)
+        #cite: Time Series in Pandas Lesson
+    
+        # Plot
+        plt.figure(figsize = (12,8))
+        plt.plot(county_month_view_df['exceptional_drought'], c = '#C22B26', label = 'Exceptional Drought')
+        plt.plot(county_month_view_df['extreme_plus'], c = '#D58900',  label = 'Extreme Drought')
+        plt.plot(county_month_view_df['severe_plus'], c = '#FFB632',  label = 'Severe Drought')
+        plt.plot(county_month_view_df['moderate_plus'], c = '#EED78D',  label = 'Moderate Drought')
+
+        plt.title(f"Average Minimum Drought Condition for {county} County, {state}")
+        plt.yticks(fontsize = 12)
+        plt.xticks(fontsize = 12)
+        plt.ylabel('Percent Population Experiencing Designated Drought Condition or Worse', fontsize = 12)
+        plt.legend()
+        st.pyplot();
+
+    min_year = 2010
+
+    if select_status == 'Temperature Trends by County':
+        st.markdown("### Temperature Trends by County")
+        st.markdown("###### Area charts depicting monthly temperature ranges (min-mean-max) are provided, " +
+                    "annual averages and a fixed annual mean temperature, indexed against the first year in " +
+                    "the date range. This helps keep track of longer term trends.")
+        plot_temp_trends_county(fips, min_year, county, state)
+
+    if select_status == 'Drought Trends by County':
+        st.markdown("### Drought Trends by County")
+        st.markdown("###### Drought Conditions are visualized similarly using area charts. As the drought " +
+                    "categories are sequential (Moderate > Severe > Extreme > Exceptional), values are " +
+                    "calculated as the percent of population experiencing at least the specified drought " +
+                    "condition. Areas tend to enter and exit drought conditions sequentially.")
+        plot_drought_trends_county(fips, min_year, county, state)
+
+    
+    # cite : https://python-graph-gallery.com/choropleth-map-plotly-python/
     from urllib.request import urlopen
     import json
+    import plotly.express as px
     with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
         counties = json.load(response)
+    
+    county_fips = '06001'
+    min_year = 2010
 
-    # dtype={'FIPS':str} # need to make sure we are using FIPS codes as strings vs. ints.  Can be done on import.
+    # County Center latitude and longitude
+    county_lat = county_dict.get(county_fips)[3]
+    county_lon = county_dict.get(county_fips)[2]
 
-    import plotly.express as px
+    # Filter down for State of Selected County
+    view_mon = mon[(mon['month'].dt.year == min_year) & (mon['fips'].str[:2] == county_fips[:2])]
+    view_mon['month'] = view_mon['month'].astype(str)
 
-    # Get user input: which cluster would you like to see for your selected county
-    # user_selected_value = '' # Get user input: which cluster would you like to see for your selected county
-    # cluster_dict = {
-    #     '<user_selected_value':'column_name',
-    # }
+    # Plot Choropleths
+    # cite: https://medium.com/p/2ff04921c60b
 
-    # fig = px.choropleth(
-    #                     title = f"Water Usage for {county}",
-    #                     # df, ## dateframe with FIPs codes
-    #                     geojson=counties,
-    #                     locations='FIPS',
-    #                     color=cluster_dict.get(user_selected_value),
-    #                     hover_name = 'county', ## County Name
-    #                     hover_data = '',
-    #                     basemap_visible = True
-    #                     )
+    #Exceptional Drought
+    px.choropleth(data_frame = view_mon,
+         lat=None,
+         lon=None,
+         locations='fips',
+         geojson=counties,
+         animation_frame='month',
+         color='exceptional_drought',labels = 'Exceptional Drought',
+         color_continuous_scale='Reds',
+         range_color=[0,100],
+         scope = 'usa', center = {'lat' : county_lat, 'lon' : county_lon},
+         title = f'Percent Population Experiencing Exceptional Drought: {state}',
+         height=600)
+
+    #Extreme Drought or worse
+    view_mon['extreme_plus'] = view_mon[['exceptional_drought','extreme_drought']].max(axis = 1)
+    px.choropleth(data_frame = view_mon,
+            lat=None,
+            lon=None,
+            locations='fips',
+            geojson=counties,
+            animation_frame='month',
+            color='extreme_plus',labels = 'Extreme Drought',
+            color_continuous_scale='Oranges',
+            range_color=[0,100],
+            scope = 'usa', center = {'lat' : county_lat, 'lon' : county_lon},
+            title = f'Percent Population Experiencing Extreme Drought: {state}',
+            height=600)
+
+    #Severe Drought or worse
+    view_mon['severe_plus'] = view_mon[['exceptional_drought','extreme_drought','severe_drought']].max(axis = 1)
+    px.choropleth(data_frame = view_mon,
+            lat=None,
+            lon=None,
+            locations='fips',
+            geojson=counties,
+            animation_frame='month',
+            color='severe_plus',labels = 'Severe Drought',
+            color_continuous_scale='Oranges',
+            range_color=[0,100],
+            scope = 'usa', center = {'lat' : county_lat, 'lon' : county_lon},
+            title = f'Percent Population Experiencing Severe Drought: {state}',
+            height=600)
+
+    #Moderate Drought or worse
+    view_mon['moderate_plus'] = view_mon[['exceptional_drought','extreme_drought','severe_drought', 'moderate_drought']].max(axis = 1)
+    px.choropleth(data_frame = view_mon,
+            lat=None,
+            lon=None,
+            locations='fips',
+            geojson=counties,
+            animation_frame='month',
+            color='moderate_plus',labels = 'Moderate Drought',
+            color_continuous_scale='Oranges',
+            range_color=[0,100],
+            scope = 'usa', center = {'lat' : county_lat, 'lon' : county_lon},
+            title = f'Percent Population Experiencing Moderate Drought: {state}',
+            height=600)
 
 
 
 elif page == 'Cluster Charts':
 
+    # Kmeans Cluster charts created by Farah Malik and Bryan Ortiz
     df = pd.read_csv('../../data/clean-data/combined2.csv')
 
     st.header("County-level Water Usage Dashboard")
@@ -200,8 +897,8 @@ elif page == 'Cluster Charts':
                 that are not easily seen in a two-dimensional map.
                 ''')
     st.sidebar.title("Cluster Chart Selector")
-    st.sidebar.markdown("Select the charts accordingly:")
-    st.sidebar.checkbox("Show Analysis by County", True, key=1)
+    # st.sidebar.markdown("Select the charts accordingly:")
+    # st.sidebar.checkbox("Show Analysis by County", True, key=1)
 
     #get the state and county selected in the selectbox
     state = st.sidebar.selectbox('Select your state', ('AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE',
