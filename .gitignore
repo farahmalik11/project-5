@@ -13,7 +13,7 @@ lab-5.01-webscraping
 Internal
 0
 07
-Code
+#Code
 Issues
 Pull requests
 Projects
@@ -128,7 +128,7 @@ ENV/
 .jupyter
 
 #large csv files
-*.csv
+# *.csv
 © 2021 GitHub, Inc.
 Help
 Support
@@ -137,3 +137,6 @@ Training
 Blog
 About
 GitHub Enterprise Server 2.22.6
+
+# Instructional README
+Project-README.md
